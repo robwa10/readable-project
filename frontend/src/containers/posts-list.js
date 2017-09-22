@@ -4,16 +4,18 @@ import PostPreview from '../components/post-preview';
 
 class PostsList extends Component {
   renderPosts() {
-    return this.props.posts.map(post => {
+    return this.props.posts.map((post, index) => {
       return (
-        <PostPreview
-          key={post.id}
-          title={post.title}
-          body={post.body}
-          score={post.voteScore}
-          author={post.author}
-          timestamp={post.timestamp}
-        />
+        <div key={post.id}>
+          <PostPreview
+            title={post.title}
+            body={post.body}
+            score={post.voteScore}
+            author={post.author}
+            timestamp={post.timestamp}
+          />
+          {index + 1 !== this.props.posts.length ?  <hr /> : null}
+        </div>
       );
     });
   }
@@ -21,7 +23,7 @@ class PostsList extends Component {
   render() {
     console.log('Props', this.props);
     return (
-        <div className="col-md-9">
+        <div className="col-md-9" id="posts-feed">
           <div className="card">
             <div className="card-body">
       			{this.renderPosts()}

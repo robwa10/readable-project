@@ -10,7 +10,6 @@ const PostPreview = (props) => {
           <h6 className="text-secondary">Author: {props.author}</h6>
           <h6 className="text-secondary">{props.timestamp}</h6>
         </div>
-        <hr />
       </div>
     );
 }
