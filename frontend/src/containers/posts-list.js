@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchAllPosts } from '../actions';
 import PostPreview from '../components/post-preview';
 
 class PostsList extends Component {
 
   componentWillMount() {
-    this.props.fetchPosts();
+    this.props.fetchAllPosts();
   }
 
   renderPosts() {
@@ -46,4 +46,4 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsList);
+export default connect(mapStateToProps, { fetchAllPosts })(PostsList);
