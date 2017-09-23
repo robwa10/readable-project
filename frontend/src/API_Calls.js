@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const BASE_URL = "http://localhost:3001";
 
 // Generate unique token
@@ -11,10 +13,10 @@ const headers = {
 }
 
 // GET API Calls
-export const getPostsOrCategories = (route) =>
-  fetch(`${BASE_URL}/${route}`, { headers })
-    .then(res => res.json())
-    .then(data => data)
+export const getPostsOrCategories = (route) => {
+  const request = axios.get(`${BASE_URL}/${route}`, { headers });
+  return request;
+}
 
 export const getCategoryPosts = (category) =>
     fetch(`${BASE_URL}/${category}/posts`, { headers })

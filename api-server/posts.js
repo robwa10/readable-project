@@ -1,8 +1,20 @@
+const loremTextShort = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor eu augue ut. Ac ut consequat semper viverra nam libero justo. Cras adipiscing enim eu turpis egestas pretium aenean. Tristique senectus et netus et malesuada fames ac turpis egestas. Pretium aenean pharetra magna ac placerat vestibulum. Odio aenean sed adipiscing diam. Nisl nunc mi ipsum faucibus. Malesuada pellentesque elit eget gravida cum sociis. Sit amet risus nullam eget felis eget nunc lobortis mattis. Lorem ipsum dolor sit amet consectetur adipiscing elit.";
+
 const clone = require('clone')
 
 let db = {}
 
 const defaultData = {
+  "8xf0y6zyuviuyvd": {
+    id: '8xf0y6zyuviuyvd',
+    timestamp: 1467166872634,
+    title: 'My Post',
+    body: loremTextShort,
+    author: 'Steve Jobs',
+    category: 'udacity',
+    voteScore: 3,
+    deleted: false
+  },
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,

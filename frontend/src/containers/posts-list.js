@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../actions';
 import PostPreview from '../components/post-preview';
 
 class PostsList extends Component {
+
+  componentWillMount() {
+    this.props.fetchPosts();
+  }
+
   renderPosts() {
     return this.props.posts.map((post, index) => {
       return (
@@ -14,6 +20,7 @@ class PostsList extends Component {
             author={post.author}
             timestamp={post.timestamp}
           />
+          {/* Add a <hr /> under all but last post */}
           {index + 1 !== this.props.posts.length ?  <hr /> : null}
         </div>
       );
@@ -21,12 +28,11 @@ class PostsList extends Component {
   }
 
   render() {
-    console.log('Props', this.props);
     return (
-        <div className="col-md-9" id="posts-feed">
+        <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
-      			{this.renderPosts()}
+      			     {this.props.posts ? this.renderPosts() : null}
             </div>
           </div>
         </div>
@@ -34,10 +40,10 @@ class PostsList extends Component {
   }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state, ownProps) {
   return {
-     posts: state.posts
-  }
-};
+      posts: state.posts,
+    }
+}
 
-export default connect(mapStateToProps)(PostsList);
+export default connect(mapStateToProps, { fetchPosts })(PostsList);
