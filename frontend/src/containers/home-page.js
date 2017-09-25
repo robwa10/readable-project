@@ -11,16 +11,19 @@ class HomePage extends Component {
 
   componentDidMount() {
     api.getPostsOrCategories('posts').then(data =>
-      this.props.recievePosts(data)
+      this.props.recievePosts(data) // Pass to posts-actions
     );
     api.getPostsOrCategories('categories').then(data =>
-      this.props.recieveCategories(data)
+      this.props.recieveCategories(data) // Pass to categories-actions
     );
   }
 
+  // Turn the categories objecy into an array and capitalize first letter
   mapCategories(object) {
     let categoriesArray = [];
-    object.map((category) => (categoriesArray.push(category.name)))
+    object.map((category) => (categoriesArray.push(
+      category.name.charAt(0).toUpperCase() + category.name.slice(1)
+    )))
     return categoriesArray;
   }
 
@@ -55,7 +58,7 @@ class HomePage extends Component {
 function mapStateToProps(state, ownProps) {
   return {
       posts: state.posts,
-      categories: state.categories.categories,
+      categories: state.categories,
     }
 }
 
