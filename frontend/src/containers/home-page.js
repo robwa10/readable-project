@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllPosts, fetchAllCategories } from '../actions';
+import { recievePosts, fetchAllCategories } from '../actions';
 import Sidebar from '../components/sidebar';
 import PostsList from '../components/posts-list';
 import Fab from '../components/fab';
 import MDSpinner from "react-md-spinner";
+import * as api from '../API_Calls';
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-        spinner: true,
-      }
-  }
 
-  componentWillMount() {
-    this.props.fetchAllPosts();
+  componentDidMount() {
     this.props.fetchAllCategories();
+    api.getPostsOrCategories('posts').then(posts =>
+      this.props.recievePosts(posts)
+    );
   }
 
   mapCategories(object) {
@@ -43,7 +40,7 @@ class HomePage extends Component {
               />
             </div>
             :
-            <div className="row" style={{height: '50vh'}}>
+            <div className="row" style={{height: '30vh'}}>
               <div className="col text-center align-self-center">
                 <MDSpinner size='50' />
               </div>
@@ -63,4 +60,4 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-export default connect(mapStateToProps, { fetchAllPosts, fetchAllCategories })(HomePage);
+export default connect(mapStateToProps, { recievePosts, fetchAllCategories })(HomePage);

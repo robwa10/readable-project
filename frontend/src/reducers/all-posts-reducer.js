@@ -1,8 +1,8 @@
-import { FETCH_POSTS } from '../actions/action-constants';
+import { RECIEVE_POSTS } from '../actions/action-constants';
 
 export default function(state = [], action) {
   switch (action.type) {
-    case FETCH_POSTS:
+    case RECIEVE_POSTS:
       return action.payload.data;
     default:
       return state;

@@ -1,27 +1,8 @@
-import {
-  getPostsOrCategories,
-  getSinglePostOrComment,
-} from '../API_Calls';
-import {
-  FETCH_POSTS,
-  FETCH_SINGLE_POST,
-} from './action-constants';
+import { RECIEVE_POSTS } from './action-constants';
 
-
-export function fetchAllPosts() {
-  const request = getPostsOrCategories('posts');
-  console.log('All Post Action: ', request);
+export function recievePosts(posts) {
   return {
-    type: FETCH_POSTS,
-    payload: request,
+    type: RECIEVE_POSTS,
+    payload: posts,
   };
-}
-
-export function fetchSinglePost(id) {
-  const request = getSinglePostOrComment('posts', id);
-  console.log('1 Post Action: ', request);
-  return {
-    type: FETCH_SINGLE_POST,
-    payload: request,
-  }
 }
