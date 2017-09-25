@@ -11,7 +11,6 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log('Category List: ', this.props.categories);
   return (
     <div className="col-md-3">
       <div className="card">

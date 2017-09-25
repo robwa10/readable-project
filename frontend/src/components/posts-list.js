@@ -21,7 +21,6 @@ class PostsList extends Component {
   }
 
   render() {
-    console.log('Posts List Props: ', this.props.posts);
     return (
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">

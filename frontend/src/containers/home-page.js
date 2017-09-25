@@ -20,14 +20,11 @@ class HomePage extends Component {
 
   mapCategories(object) {
     let categoriesArray = [];
-    object.map((category) => {
-      categoriesArray.push(category.name);
-    })
+    object.map((category) => (categoriesArray.push(category.name)))
     return categoriesArray;
   }
 
   render() {
-    console.log('Home Page Props: ', this.props.posts);
     return (
       <div>
         <div className="container">
