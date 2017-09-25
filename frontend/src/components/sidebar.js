@@ -11,6 +11,7 @@ class Sidebar extends Component {
   }
 
   render() {
+    console.log('Category List: ', this.props.categories);
   return (
     <div className="col-md-3">
       <div className="card">
@@ -18,7 +19,7 @@ class Sidebar extends Component {
             <DropDown
               labelStyle={{fontSize: '1.3em'}}
               label="Filter"
-              options={this.state.categories}
+              options={this.props.categories}
             />
             <DropDown
               labelStyle={{fontSize: '1.3em'}}

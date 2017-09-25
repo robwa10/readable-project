@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchAllPosts } from '../actions';
-import PostPreview from '../components/post-preview';
+import PostPreview from './post-preview';
 
 class PostsList extends Component {
-
-  componentWillMount() {
-    this.props.fetchAllPosts();
-  }
-
   renderPosts() {
     return this.props.posts.map((post, index) => {
       return (
@@ -28,11 +21,12 @@ class PostsList extends Component {
   }
 
   render() {
+    console.log('Posts List Props: ', this.props.posts);
     return (
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
-      			     {this.props.posts ? this.renderPosts() : null}
+      			     {this.renderPosts()}
             </div>
           </div>
         </div>
@@ -40,10 +34,4 @@ class PostsList extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-      posts: state.posts,
-    }
-}
-
-export default connect(mapStateToProps, { fetchAllPosts })(PostsList);
+export default PostsList;

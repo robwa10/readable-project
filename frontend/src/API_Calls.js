@@ -23,10 +23,11 @@ export const getCategoryPosts = (category) =>
       .then(res => res.json())
       .then(data => data)
 
-export const getSinglePostOrComment = (route, id) =>
-  fetch(`${BASE_URL}/${route}/${id}`, {headers})
-    .then(res => res.json())
-    .then(data => data)
+export const getSinglePostOrComment = (route, id) => {
+  const request = axios.get(`${BASE_URL}/${route}/${id}`, { headers });
+  console.log('API Request', request);
+  return request;
+}
 
 export const getPostComments = (id) =>
   fetch(`${BASE_URL}/posts/${id}/comments`, {headers})

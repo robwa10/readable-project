@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Header from '../components/header';
 import Post from '../components/post';
-import HomePage from '../components/home-page';
+import HomePage from '../containers/home-page';
 
 class App extends Component {
 
