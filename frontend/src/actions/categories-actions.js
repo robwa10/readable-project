@@ -1,11 +1,8 @@
-import { getPostsOrCategories } from '../API_Calls';
-import { FETCH_CATEGORIES } from './action-constants';
+import { RECIEVE_CATEGORIES } from './action-constants';
 
-export function fetchAllCategories() {
-  const request = getPostsOrCategories('categories');
-  console.log('All categories action: ', request);
+export function recieveCategories(categories) {
   return {
-    type: FETCH_CATEGORIES,
-    payload: request,
+    type: RECIEVE_CATEGORIES,
+    payload: categories,
   };
 }

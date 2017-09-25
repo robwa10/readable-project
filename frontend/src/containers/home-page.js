@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { recievePosts, fetchAllCategories } from '../actions';
+import { recievePosts, recieveCategories } from '../actions';
 import Sidebar from '../components/sidebar';
 import PostsList from '../components/posts-list';
 import Fab from '../components/fab';
@@ -10,9 +10,11 @@ import * as api from '../API_Calls';
 class HomePage extends Component {
 
   componentDidMount() {
-    this.props.fetchAllCategories();
-    api.getPostsOrCategories('posts').then(posts =>
-      this.props.recievePosts(posts)
+    api.getPostsOrCategories('posts').then(data =>
+      this.props.recievePosts(data)
+    );
+    api.getPostsOrCategories('categories').then(data =>
+      this.props.recieveCategories(data)
     );
   }
 
@@ -60,4 +62,4 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-export default connect(mapStateToProps, { recievePosts, fetchAllCategories })(HomePage);
+export default connect(mapStateToProps, { recievePosts, recieveCategories })(HomePage);
