@@ -10,21 +10,19 @@ import * as api from '../API_Calls';
 class HomePage extends Component {
 
   componentDidMount() {
-    api.getPostsOrCategories('posts').then(data =>
-      this.props.recievePosts(data) // Pass to posts-actions
-    );
-    api.getPostsOrCategories('categories').then(data =>
-      this.props.recieveCategories(data) // Pass to categories-actions
-    );
+    api.getPostsOrCategories('posts').then((data) => {
+      this.props.recievePosts(data); // Pass to posts-actions
+      console.log(this.props.posts)
+    })
+    api.getPostsOrCategories('categories').then((data) => {
+      this.props.recieveCategories(data); // Pass to categories-actions
+      console.log(this.props.categories)
+    })
   }
 
-  // Turn the categories objecy into an array and capitalize first letter
-  mapCategories(object) {
-    let categoriesArray = [];
-    object.map((category) => (categoriesArray.push(
-      category.name.charAt(0).toUpperCase() + category.name.slice(1)
-    )))
-    return categoriesArray;
+  // Takes in state and filters based on category
+  filterPosts(filter, state) {
+
   }
 
   render() {
@@ -35,7 +33,7 @@ class HomePage extends Component {
             ?
             <div className="row">
               <Sidebar
-                categories={this.mapCategories(this.props.categories)}
+                categories={this.props.categories}
               />
               <PostsList
                 posts={this.props.posts}

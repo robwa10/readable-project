@@ -3,8 +3,13 @@ import { RECIEVE_CATEGORIES } from '../actions/action-constants';
 export default function(state = [], action) {
   switch (action.type) {
     case RECIEVE_CATEGORIES:
-      return action.payload.data.categories;
+      let categories = action.payload.data.categories;
+      return categories.map((cat) => {
+        let array = [];
+        array.push(cat.name);
+        return array
+      });
     default:
       return state;
   }
-}
+};

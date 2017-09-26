@@ -6,7 +6,6 @@ class Sidebar extends Component {
     super(props);
     this.state = {
       options: ["Newest", "Authors", "Score - Highest First"],
-      categories: ["React", "Redux", "Udacity"],
     }
   }
 
