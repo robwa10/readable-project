@@ -18,10 +18,10 @@ export const getPostsOrCategories = (route) => {
   return request;
 }
 
-export const getCategoryPosts = (category) =>
-    fetch(`${BASE_URL}/${category}/posts`, { headers })
-      .then(res => res.json())
-      .then(data => data)
+export const getCategoryPosts = (category) => {
+  const request = axios.get(`${BASE_URL}/${category}/posts`, { headers });
+  return request;
+}
 
 export const getSinglePostOrComment = (route, id) => {
   const request = axios.get(`${BASE_URL}/${route}/${id}`, { headers });
