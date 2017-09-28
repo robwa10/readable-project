@@ -7,7 +7,6 @@
 // his egghead.io video tutorials:
 // https://egghead.io/courses/getting-started-with-redux
 // https://egghead.io/courses/building-react-applications-with-idiomatic-redux
-//
 // were both huge in helping me understand Redux
 // and are a major influence on the code you will
 // find within this app.
@@ -15,7 +14,8 @@
 // Now that I've Stated that...you're right that was a horrible joke.
 
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 import reducer from './reducers';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -25,10 +25,11 @@ import App from './components/App';
 import './App.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducer);
+const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
+//const store = createStore(reducer);
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={creatStoreWithMiddleware(reducer)}>
     <BrowserRouter>
       <App/>
     </BrowserRouter>

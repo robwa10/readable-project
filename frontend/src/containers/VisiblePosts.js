@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { recievePosts } from '../actions';
+import * as actions from '../actions';
 import * as api from '../API_Calls';
 import PostsList from '../components/posts-list';
 import PostPreview from '../components/post-preview';
@@ -8,12 +8,10 @@ import PostPreview from '../components/post-preview';
 class VisiblePosts extends Component {
   constructor(props) {
     super(props);
-    
+
   }
   componentDidMount() {
-    api.getPostsOrCategories('posts').then((data) => {
-      this.props.recievePosts(data); // Pass to posts-actions
-    })
+    this.fetchData();
     console.log('Props:', this.props);
   }
 
@@ -21,15 +19,19 @@ class VisiblePosts extends Component {
     console.log('Update Props:', this.props);
     console.log('prevProps: ', prevProps);
     if (this.props.filter !== prevProps.filter) {
-      api.getCategoryPosts(this.props.filter).then((data) => {
-        this.props.recievePosts(data); // Pass to posts-actions
-      })
+      this.fetchData();
     }
+  }
+  fetchData() {
+    const { filter, fetchPosts } = this.props;
+    fetchPosts(filter);
   }
 
   render() {
     const posts = this.props.posts;
     console.log('Posts in Render: ', posts);
+    console.log('');
+    console.log('');
     return (
       <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
         <div className="card">
@@ -64,4 +66,4 @@ const mapStateToProps = (state, { match }) => {
   }
 };
 
-export default connect(mapStateToProps, { recievePosts })(VisiblePosts);
+export default connect(mapStateToProps, actions)(VisiblePosts);
