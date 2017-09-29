@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Fab = (props) => {
   return (
-    <Link>
+    <Link to='/new_post'>
       <div className="fab-button-container">
         <div className="container">
           <div className="fab-button-row">

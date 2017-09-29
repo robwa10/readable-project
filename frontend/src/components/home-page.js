@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import VisiblePosts from '../containers/VisiblePosts';
 import Sidebar from '../containers/sidebar';
+import Post from '../components/post';
 import Fab from '../components/fab';
 
 class HomePage extends Component {
@@ -15,6 +16,7 @@ class HomePage extends Component {
             <Sidebar />
             <Switch>
               <Route path='/:filter?' component={VisiblePosts}/>
+              <Route exact path='/post/:id?' component={Post} />
             </Switch>
           </div>
         </div>
