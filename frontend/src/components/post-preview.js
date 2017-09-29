@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PostPreview = (props) => {
     return (
       <div>
         <div className="post">
-          <h2>{props.title}</h2>
+          <Link><h2>{props.title}</h2></Link>
           <p>{props.body}</p>
           <h5>{props.score}</h5>
           <h6 className="text-secondary">Author: {props.author}</h6>
