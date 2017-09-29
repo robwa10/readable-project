@@ -1,9 +1,8 @@
-import { FETCH_SINGLE_POST } from '../actions/action-constants';
+import { FETCH_SINGLE_POST } from '../actions';
 
 export default function(state = {}, action) {
   switch (action.type) {
     case FETCH_SINGLE_POST:
-      console.log('Reducer: ', action.payload.data);
       return action.payload.data;
     default:
       return state;

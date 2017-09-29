@@ -1,4 +1,4 @@
-import { ALL_POSTS } from '../actions/action-constants';
+import { ALL_POSTS } from '../actions';
 
 const visibilityFilter = (state = ALL_POSTS, action) => {
   switch (action.type) {

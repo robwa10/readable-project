@@ -1,4 +1,4 @@
-import { RECIEVE_CATEGORIES } from '../actions/action-constants';
+import { RECIEVE_CATEGORIES } from '../actions';
 
 export default function(state = [], action) {
   switch (action.type) {
