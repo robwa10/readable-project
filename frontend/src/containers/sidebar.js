@@ -27,25 +27,19 @@ class Sidebar extends Component {
             {categories.map(cat => {
               const c = cat[0];
               return (
-                <Link key={c} to={`/${c}`}>
-                  <div className="col-12">
-                    <button
-                      id={c}
-                      type="button"
-                      className="btn btn-link">
-                      {c}
-                    </button>
-                  </div>
-                </Link>
+                <Link
+                  key={c}
+                  to={`/${c}`}
+                  role="button"
+                  className="col-12"
+                >{c}</Link>
                 )
               })}
-              <Link to='/'>
-                <div className="col-12">
-                  <button className="btn btn-link">
-                    All Posts
-                  </button>
-                </div>
-              </Link>
+              <Link
+                to='/'
+                role="button"
+                className="col-12"
+              >All Posts</Link>
             </div>
           </div>
         </div>
