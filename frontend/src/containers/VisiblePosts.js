@@ -17,7 +17,7 @@ class VisiblePosts extends Component {
 
   fetchData() {
     const { filter, getPosts } = this.props;
-    getPosts(filter);
+    this.props.getPostsOrCategories(filter);
   }
 
   render() {
