@@ -5,26 +5,33 @@ import VoteButton from '../components/vote-button';
 
 class Post extends Component {
   componentDidMount() {
+    console.log('componentDidMount');
     this.fetchData();
+
   };
 
   fetchData() {
     const { id, getSinglePost } = this.props;
+    console.log('Fetched Data');
     getSinglePost(id);
   };
 
   render () {
+    const { title, body, author, timestamp, voteScore, id } = this.props.post;
     return (
       <div className="container">
         <div className="card">
           <div className="card-body">
-            <div className="card-title"><h2>{this.props.post.title}</h2></div>
+            <div className="card-title"><h2>{title}</h2></div>
             <div className="card-text">
-              <p>{this.props.post.body}</p>
+              <p>{body}</p>
             </div>
-            <h6>Author: {this.props.post.author}</h6>
-            <h6>{this.props.post.timestamp}</h6>
-            <VoteButton />
+            <h6>Author: {author}</h6>
+            <h6>{timestamp}</h6>
+            <VoteButton
+              voteScore={voteScore}
+              id={id}
+            />
             <button className="btn btn-secondary mt-3">Edit</button>
           </div>
         </div>
@@ -36,7 +43,7 @@ class Post extends Component {
 const mapStateToProps = (state, { match }) => {
   const id = match.params.id;
   return {
-    post: state.singlePost,
+    post: state.post,
     id,
   }
 };
