@@ -9,7 +9,7 @@ class VoteButton extends Component {
             <button className="btn btn-sm btn-secondary">+1</button>
           </div>
           <div className="vote-count">
-            <h2 className="score">10</h2>
+            <h2 className="score">{this.props.voteScore}</h2>
           </div>
           <div>
             <button className="btn btn-sm btn-secondary">-1</button>
