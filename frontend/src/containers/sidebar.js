@@ -31,14 +31,14 @@ class Sidebar extends Component {
                   key={c}
                   to={`/${c}`}
                   role="button"
-                  className="p-1 col-12 col-md-6"
+                  className="p-2 col-12 col-md-6"
                 >{c}</Link>
                 )
               })}
               <Link
                 to='/'
                 role="button"
-                className="p-1 col-12 col-md-6"
+                className="p-2 col-12 col-md-6"
               >All Posts</Link>
             </div>
           </div>
