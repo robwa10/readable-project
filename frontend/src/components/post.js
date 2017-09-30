@@ -25,7 +25,6 @@ class Post extends Component {
               <p>{body}</p>
             </div>
             <h6>Author: {author}</h6>
-            <h6>{timestamp}</h6>
             <VoteButton
               voteScore={voteScore}
               id={id}

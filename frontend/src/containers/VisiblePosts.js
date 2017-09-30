@@ -14,7 +14,7 @@ class VisiblePosts extends Component {
       this.fetchData();
     }
   }
-  
+
   fetchData() {
     const { filter, getPosts } = this.props;
     getPosts(filter);
@@ -38,7 +38,6 @@ class VisiblePosts extends Component {
                         body={`${p.body.substring(0, 300)}...`}
                         score={p.voteScore}
                         author={p.author}
-                        timestamp={p.timestamp}
                       />
                       {/* Add a <hr /> under all but last post */}
                       {index + 1 !== posts.length ?  <hr /> : null}
