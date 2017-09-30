@@ -1,4 +1,3 @@
-import * as api from '../API_Calls';
 import axios from 'axios';
 
 export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';

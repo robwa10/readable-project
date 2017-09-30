@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import * as api from '../API_Calls';
 import Sidebar from '../containers/sidebar';
-import PostsList from '../components/posts-list';
 import PostPreview from '../components/post-preview';
 
 class VisiblePosts extends Component {
-  constructor(props) {
-    super(props);
-
-  }
   componentDidMount() {
     this.fetchData();
   }
