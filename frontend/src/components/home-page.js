@@ -7,12 +7,10 @@ import Fab from '../components/fab';
 const HomePage = () => (
   <div>
     <div className="container">
-      <div className="row">
-        <Switch>
-          <Route path='/:filter?' component={VisiblePosts}/>
-          <Route path='/post/:id' component={Post} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path='/:filter?' component={VisiblePosts}/>
+        <Route path='/post/:id' component={Post} />
+      </Switch>
     </div>
     <Fab />
   </div>

@@ -28,7 +28,7 @@ class VisiblePosts extends Component {
   render() {
     const posts = this.props.posts;
     return (
-      <div>
+      <div className="row">
         <Sidebar />
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
