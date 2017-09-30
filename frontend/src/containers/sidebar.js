@@ -25,20 +25,20 @@ class Sidebar extends Component {
             <h4>Filter</h4>
             <div className="row">
             {categories.map(cat => {
-              const c = cat[0];
+              const c = cat[0].charAt(0).toUpperCase() + cat[0].slice(1);
               return (
                 <Link
                   key={c}
                   to={`/${c}`}
                   role="button"
-                  className="col-12"
+                  className="p-1 col-12 col-md-6"
                 >{c}</Link>
                 )
               })}
               <Link
                 to='/'
                 role="button"
-                className="col-12"
+                className="p-1 col-12 col-md-6"
               >All Posts</Link>
             </div>
           </div>
