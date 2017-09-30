@@ -31,23 +31,23 @@ class VisiblePosts extends Component {
         <div className="card">
           <div className="card-body">
             {posts
-              ? posts.map((post, index) => {
+              ? posts.map((p, index) => {
                 return (
-                  <div key={post.id}>
+                  <div key={p.id}>
                     <PostPreview
-                      to={`/post/${post.id}`}
-                      title={post.title}
-                      body={`${post.body.substring(0, 300)}...`}
-                      score={post.voteScore}
-                      author={post.author}
-                      timestamp={post.timestamp}
+                      id={p.id}
+                      title={p.title}
+                      body={`${p.body.substring(0, 300)}...`}
+                      score={p.voteScore}
+                      author={p.author}
+                      timestamp={p.timestamp}
                     />
                     {/* Add a <hr /> under all but last post */}
                     {index + 1 !== posts.length ?  <hr /> : null}
                   </div>
                 );
               })
-              : <h1>Loading, sucks to be you.</h1>
+              : <h1>Come here often? Oh, you're waiting for someone else...</h1>
             }
           </div>
         </div>
