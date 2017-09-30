@@ -5,14 +5,12 @@ import VoteButton from '../components/vote-button';
 
 class Post extends Component {
   componentDidMount() {
-    console.log('componentDidMount');
     this.fetchData();
 
   };
 
   fetchData() {
     const { id, getSinglePost } = this.props;
-    console.log('Fetched Data');
     getSinglePost(id);
   };
 
