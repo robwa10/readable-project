@@ -23,19 +23,30 @@ class Sidebar extends Component {
         <div className="card-body">
           <div>
             <h4>Filter</h4>
+            <div className="row">
             {categories.map(cat => {
               const c = cat[0];
               return (
                 <Link key={c} to={`/${c}`}>
-                  <button
-                    id={c}
-                    type="button"
-                    className="btn btn-link">
-                    {c}
-                  </button>
+                  <div className="col-12">
+                    <button
+                      id={c}
+                      type="button"
+                      className="btn btn-link">
+                      {c}
+                    </button>
+                  </div>
                 </Link>
                 )
               })}
+              <Link to='/'>
+                <div className="col-12">
+                  <button className="btn btn-link">
+                    All Posts
+                  </button>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
