@@ -16,7 +16,7 @@ class HomePage extends Component {
             <Sidebar />
             <Switch>
               <Route path='/:filter?' component={VisiblePosts}/>
-              <Route exact path='/post/:id?' component={Post} />
+              <Route path='/post/:id?' component={Post} />
             </Switch>
           </div>
         </div>

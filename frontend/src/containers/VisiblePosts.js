@@ -35,6 +35,7 @@ class VisiblePosts extends Component {
                 return (
                   <div key={post.id}>
                     <PostPreview
+                      to={`/post/${post.id}`}
                       title={post.title}
                       body={`${post.body.substring(0, 300)}...`}
                       score={post.voteScore}
