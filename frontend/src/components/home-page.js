@@ -9,7 +9,7 @@ const HomePage = () => (
     <div className="container">
       <Switch>
         <Route exact path='/:filter?' component={VisiblePosts}/>
-        <Route exact path='/post/:id' component={Post} />
+        <Route exact path='/:filter/:id' component={Post} />
       </Switch>
     </div>
     <Fab />

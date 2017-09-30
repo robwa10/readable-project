@@ -33,7 +33,7 @@ class VisiblePosts extends Component {
                   return (
                     <div key={p.id}>
                       <PostPreview
-                        id={p.id}
+                        id={`/${p.category}/${p.id}`}
                         title={p.title}
                         body={`${p.body.substring(0, 300)}...`}
                         score={p.voteScore}
