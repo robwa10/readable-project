@@ -42,7 +42,7 @@ export const getPosts = (filter) => {
 
 // Get a single post
 export const getSinglePost = (filter) => (
-  {type: RECIEVE_POST, payload: getData(`$posts/${filter}`)}
+  {type: RECIEVE_POST, payload: getData(`posts/${filter}`)}
 );
 
 //---------- End API Action Creators

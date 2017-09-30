@@ -8,8 +8,8 @@ const HomePage = () => (
   <div>
     <div className="container">
       <Switch>
-        <Route path='/:filter?' component={VisiblePosts}/>
-        <Route path='/post/:id' component={Post} />
+        <Route exact path='/:filter?' component={VisiblePosts}/>
+        <Route exact path='/post/:id' component={Post} />
       </Switch>
     </div>
     <Fab />
