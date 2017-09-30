@@ -1,8 +1,8 @@
-import { FETCH_SINGLE_POST } from '../actions';
+import { RECIEVE_POST } from '../actions';
 
 export default function(state = {}, action) {
   switch (action.type) {
-    case FETCH_SINGLE_POST:
+    case RECIEVE_POST:
       return action.payload.data;
     default:
       return state;
