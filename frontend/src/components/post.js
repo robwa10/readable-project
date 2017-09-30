@@ -15,7 +15,7 @@ class Post extends Component {
   };
 
   render () {
-    const { title, body, author, timestamp, voteScore, id } = this.props.post;
+    const { title, body, author, voteScore, id } = this.props.post;
     return (
       <div className="container">
         <div className="card">
