@@ -28,29 +28,31 @@ class VisiblePosts extends Component {
   render() {
     const posts = this.props.posts;
     return (
-      <Sidebar />
-      <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
-        <div className="card">
-          <div className="card-body">
-            {posts
-              ? posts.map((p, index) => {
-                return (
-                  <div key={p.id}>
-                    <PostPreview
-                      id={p.id}
-                      title={p.title}
-                      body={`${p.body.substring(0, 300)}...`}
-                      score={p.voteScore}
-                      author={p.author}
-                      timestamp={p.timestamp}
-                    />
-                    {/* Add a <hr /> under all but last post */}
-                    {index + 1 !== posts.length ?  <hr /> : null}
-                  </div>
-                );
-              })
-              : <h1>Come here often? Oh, you're waiting for someone else...</h1>
-            }
+      <div>
+        <Sidebar />
+        <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
+          <div className="card">
+            <div className="card-body">
+              {posts
+                ? posts.map((p, index) => {
+                  return (
+                    <div key={p.id}>
+                      <PostPreview
+                        id={p.id}
+                        title={p.title}
+                        body={`${p.body.substring(0, 300)}...`}
+                        score={p.voteScore}
+                        author={p.author}
+                        timestamp={p.timestamp}
+                      />
+                      {/* Add a <hr /> under all but last post */}
+                      {index + 1 !== posts.length ?  <hr /> : null}
+                    </div>
+                  );
+                })
+                : <h1>Come here often? Oh, you're waiting for someone else...</h1>
+              }
+            </div>
           </div>
         </div>
       </div>
