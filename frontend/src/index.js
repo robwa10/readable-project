@@ -20,10 +20,8 @@ import reducer from './reducers';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import configureStore from './configureStore';
 import App from './components/App';
 import './App.css';
-import registerServiceWorker from './registerServiceWorker';
 
 const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 //const store = createStore(reducer);
@@ -35,4 +33,3 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>, document.getElementById('root')
 );
-registerServiceWorker();
