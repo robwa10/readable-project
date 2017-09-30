@@ -3,14 +3,6 @@ import axios from 'axios';
 export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
-export const ALL_POSTS = 'all';
-
-export function recieveCategories(categories) {
-  return {
-    type: RECIEVE_CATEGORIES,
-    payload: categories,
-  };
-}
 
 //---------- API Action Creators
 
@@ -29,15 +21,19 @@ const headers = {
 // Base axios call
 const getData = (path) => (axios.get(`${BASE_URL}/${path}`, { headers }));
 
-// Get all posts or posts filtered by category
-export const getPosts = (filter) => {
+// Get all posts, all categories or posts filtered by category type
+export const getPostsOrCategories = (filter) => {
+  let action = RECIEVE_POSTS;
   let request;
   if (filter === 'posts') {
     request = getData(filter);
+  } else if (filter === 'categories') {
+    request = getData(filter);
+    action = RECIEVE_CATEGORIES;
   } else {
     request = getData(`${filter}/posts`);
   }
-  return ({ type: RECIEVE_POSTS, payload: request})
+  return ({ type: action, payload: request})
 }
 
 // Get a single post
