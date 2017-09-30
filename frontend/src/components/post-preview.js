@@ -6,7 +6,6 @@ const PostPreview = (props) => {
       <div>
         <div className="post">
           <Link to={props.id}><h2>{props.title}</h2></Link>
-          <p>{props.body}</p>
           <h5>{props.score}</h5>
           <h6 className="text-secondary">Author: {props.author}</h6>
         </div>

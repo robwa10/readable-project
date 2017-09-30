@@ -35,7 +35,6 @@ class VisiblePosts extends Component {
                       <PostPreview
                         id={`/${p.category}/${p.id}`}
                         title={p.title}
-                        body={`${p.body.substring(0, 300)}...`}
                         score={p.voteScore}
                         author={p.author}
                       />
