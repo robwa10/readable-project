@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import * as api from '../API_Calls';
+import Sidebar from '../containers/sidebar';
 import PostsList from '../components/posts-list';
 import PostPreview from '../components/post-preview';
 
@@ -27,6 +28,7 @@ class VisiblePosts extends Component {
   render() {
     const posts = this.props.posts;
     return (
+      <Sidebar />
       <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
         <div className="card">
           <div className="card-body">
