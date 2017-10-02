@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPostsOrCategories } from '../actions';
+import { getCategories } from '../actions';
 import { Link } from 'react-router-dom';
 
 class Sidebar extends Component {
   componentDidMount() {
-    this.props.getPostsOrCategories('categories');
+    this.props.getCategories();
   }
 
   render() {
@@ -45,4 +45,4 @@ const mapStateToProps = (state) => ({
   categories: state.categories,
 })
 
-export default connect(mapStateToProps, { getPostsOrCategories })(Sidebar);
+export default connect(mapStateToProps, { getCategories })(Sidebar);
