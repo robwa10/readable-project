@@ -21,36 +21,31 @@ const headers = {
 
 export const getPosts = (filter) => {
   return function(dispatch) {
-    return fetch(`${BASE_URL}/${filter}`, { headers })
-      .then(resp => resp.json())
-      .then(json => dispatch({ type: RECIEVE_POSTS, json}))
+    return axios.get(`${BASE_URL}/${filter}`, { headers })
+      .then(response => dispatch({ type: RECIEVE_POSTS, response}))
   }
 }
 
 export const getPostsByCategory = (filter) => {
   return function(dispatch) {
-    return fetch(`${BASE_URL}/${filter}/posts`, { headers })
-      .then(resp => resp.json())
-      .then(json => dispatch({ type: RECIEVE_POSTS, json}))
+    return axios.get(`${BASE_URL}/${filter}/posts`, { headers })
+      .then(response => dispatch({ type: RECIEVE_POSTS, response}))
   }
 }
 
 export const getSinglePost = (filter) => {
   return function(dispatch) {
-    return fetch(`${BASE_URL}/posts/${filter}`, { headers })
-      .then(resp => resp.json())
-      .then(json => dispatch({type: RECIEVE_POST, json}))
+    return axios.get(`${BASE_URL}/posts/${filter}`, { headers })
+      .then(response => dispatch({type: RECIEVE_POST, response}))
   }
 }
 
 export const getCategories = () => {
   return function(dispatch) {
-    return fetch(`${BASE_URL}/categories`, { headers })
-      .then(resp => resp.json())
-      .then(json => dispatch({ type: RECIEVE_CATEGORIES, json}))
+    return axios.get(`${BASE_URL}/categories`, { headers })
+    .then(response => dispatch({ type: RECIEVE_CATEGORIES, response}))
   }
 }
-
 
 //---------- POST API Action Creators
 export const postVote = (id, option) => {
