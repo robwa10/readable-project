@@ -15,7 +15,7 @@
 
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
+import thunk from 'redux-thunk';
 import reducer from './reducers';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -23,11 +23,17 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import './App.css';
 
-const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
-//const store = createStore(reducer);
+// Note: this API requires redux@>=3.1.0
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
+
+//const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
+//creatStoreWithMiddleware(reducer)
 
 ReactDOM.render(
-  <Provider store={creatStoreWithMiddleware(reducer)}>
+  <Provider store={store}>
     <BrowserRouter>
       <App/>
     </BrowserRouter>
