@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import allPostsReducer from './all-posts-reducer';
+import { allPostsReducer, singlePostReducer } from './posts-reducer';
 import allCategoriesReducer from './all-categories-reducer';
-import singlePostReducer from './single-post-reducer';
 import filterOptions from './filter-options-reducer';
 
 const rootReducer = combineReducers({
