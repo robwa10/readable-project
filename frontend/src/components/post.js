@@ -5,25 +5,19 @@ import VoteButton from '../containers/vote-button';
 
 class Post extends Component {
   componentDidMount() {
-    this.fetchData();
-  };
-
-  fetchData() {
-    console.log('Match id: ', this.props.match.params.id);
     this.props.getSinglePost(this.props.match.params.id);
   };
 
-
   render () {
-    const { title,
+    const {
+      title,
       body,
       author,
       voteScore,
       id, } = this.props.posts;
-      console.log('ID: ', id);
-      console.log('Singel Post: ', this.props);
     return (
       <div className="container">
+        {id ?
         <div className="card">
           <div className="card-body">
             <div className="card-title"><h2>{title}</h2></div>
@@ -38,6 +32,8 @@ class Post extends Component {
             <button className="btn btn-secondary mt-3">Edit</button>
           </div>
         </div>
+      : null
+      }
       </div>
     );
   }

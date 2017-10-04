@@ -32,7 +32,7 @@ class VisiblePosts extends Component {
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
-              {this.props.posts
+              {Array.isArray(this.props.posts)
                 ? this.props.posts.map((p, index) => {
                   return (
                     <div key={p.id}>
@@ -51,7 +51,7 @@ class VisiblePosts extends Component {
                     </div>
                   );
                 })
-                : <h1>Come here often? Oh, you're waiting for someone else...</h1>
+                : null
               }
             </div>
           </div>
