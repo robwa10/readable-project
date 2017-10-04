@@ -24,7 +24,7 @@ class Post extends Component {
             <div className="card-text">
               <p>{body}</p>
             </div>
-            <h6>Author: {author}</h6>
+            <h6>{`Author: ${author}`}</h6>
             <VoteButton
               voteScore={voteScore}
               id={id}
