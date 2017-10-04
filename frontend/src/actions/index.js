@@ -3,6 +3,7 @@ import axios from 'axios';
 export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
+export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 
@@ -51,6 +52,6 @@ export const getCategories = () => {
 export const postVote = (id, option) => {
   return function(dispatch) {
     return axios.post(`${BASE_URL}/posts/${id}`,{ option },{ headers })
-    .then(json => dispatch({ type: INCREMENT, json }));
+    .then(response => dispatch({ type: CHANGE_POST_SCORE, response }));
   }
 }

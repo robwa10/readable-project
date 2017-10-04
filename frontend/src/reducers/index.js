@@ -5,9 +5,19 @@ import {
   RECIEVE_POST,
   RECIEVE_CATEGORIES,
   CHANGE_POST_SCORE,
-  INCREMENT,
-  DECREMENT, }
+  }
   from '../actions';
+
+  const changeScore = (state, action) => {
+    const data = action.response.data;
+    let newArray = state.slice();
+    newArray.map((post, index) => {
+      if (post.id === data.id) {
+        return post.voteScore = data.voteScore
+      }
+    })
+    return newArray;
+  }
 
 const postsReducer = (state = [], action) => {
   switch (action.type) {
@@ -16,8 +26,7 @@ const postsReducer = (state = [], action) => {
     case RECIEVE_POST:
       return [action.response.data]
     case CHANGE_POST_SCORE:
-      console.log(action);
-      return state;
+      return changeScore(state, action);
     default:
       return state;
   }
@@ -30,9 +39,7 @@ const singlePostReducer = (state = [], action) => {
       return action.response.data;
     case INCREMENT:
     case DECREMENT:
-      return Object.assign({}, state, {
-        voteScore: action.json.data.voteScore
-      })
+
     default:
       return state;
   }

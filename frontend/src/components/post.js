@@ -9,7 +9,6 @@ class Post extends Component {
   };
 
   render () {
-    console.log('Single Props: ', this.props.posts[0]);
     return (
       <div className="container">
         {this.props.posts[0] === undefined ?
