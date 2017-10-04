@@ -32,20 +32,6 @@ const postsReducer = (state = [], action) => {
   }
 }
 
-/*
-const singlePostReducer = (state = [], action) => {
-  switch (action.type) {
-
-      return action.response.data;
-    case INCREMENT:
-    case DECREMENT:
-
-    default:
-      return state;
-  }
-}
-*/
-
 const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
     case RECIEVE_CATEGORIES:
