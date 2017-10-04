@@ -7,17 +7,17 @@ import {
   }
   from '../actions';
 
-  const changeScore = (state, action) => {
-    const data = action.response.data;
-    return state.map((post) => {
-      if (post.id !== data.id) {
-        return post
-      }
-      return Object.assign({}, post, {
-        voteScore: data.voteScore
-      })
+const changeScore = (state, action) => {
+  const data = action.response.data;
+  return state.map((post) => {
+    if (post.id !== data.id) {
+      return post
+    }
+    return Object.assign({}, post, {
+      voteScore: data.voteScore
     })
-  }
+  })
+}
 
 const postsReducer = (state = [], action) => {
   switch (action.type) {
