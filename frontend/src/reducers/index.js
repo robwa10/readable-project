@@ -1,25 +1,52 @@
 import _ from 'lodash';
 import { combineReducers } from 'redux';
-import { RECIEVE_POSTS,
+import {
+  RECIEVE_POSTS,
   RECIEVE_POST,
   RECIEVE_CATEGORIES,
   INCREMENT,
-  DECREMENT } from '../actions';
-
-import filterOptions from './filter-options-reducer';
+  DECREMENT, }
+  from '../actions';
 
 const initialState = [{
-author: null,
-body: null,
+author: "Ghost Writer",
+body: "Well this is awkard, there's supposed to be something here.",
 category: null,
 deleted: false,
 id: null,
 timestamp: null,
 title: "Loading...",
-voteScore: null,
+voteScore: 0,
 }]
 
-const categoriesReducer = (state = [], action) => {
+const postsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case RECIEVE_POSTS:
+      return action.response.data
+    case RECIEVE_POST:
+      return action.response.data
+    default:
+      return state;
+  }
+}
+
+/*
+const singlePostReducer = (state = [], action) => {
+  switch (action.type) {
+
+      return action.response.data;
+    case INCREMENT:
+    case DECREMENT:
+      return Object.assign({}, state, {
+        voteScore: action.json.data.voteScore
+      })
+    default:
+      return state;
+  }
+}
+*/
+
+const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
     case RECIEVE_CATEGORIES:
       let categories = action.response.data.categories;
@@ -33,33 +60,8 @@ const categoriesReducer = (state = [], action) => {
   }
 };
 
-
-const postsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case RECIEVE_POSTS:
-      return action.response.data
-    default:
-      return state;
-
-  }
-}
-
-const singlePostReducer = (state = {}, action) => {
-  switch (action.type) {
-    case RECIEVE_POST:
-      return action.response.data;
-    case INCREMENT:
-    case DECREMENT:
-      return Object.assign({}, state, {
-        voteScore: action.json.data.voteScore
-      })
-    default:
-      return state;
-  }
-}
-
 const filterOptions = () => (
-  ["Newest", "Authors", "Score - Highest First"]
+  ["Newest", "Score - Highest First"]
 )
 
 
