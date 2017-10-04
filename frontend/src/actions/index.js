@@ -4,10 +4,8 @@ export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
 export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
 
-//---------- GET API Action Creators
+//---------- Global API variables
 const BASE_URL = "http://localhost:3001";
 
 // Generate unique token for headers
@@ -20,6 +18,7 @@ const headers = {
   'Authorization': token,
 }
 
+//---------- GET API Action Creators
 export const getPosts = (filter) => {
   return function(dispatch) {
     return axios.get(`${BASE_URL}/${filter}`, { headers })
