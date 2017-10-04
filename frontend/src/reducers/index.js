@@ -8,18 +8,7 @@ import {
   DECREMENT, }
   from '../actions';
 
-const initialState = [{
-author: "Ghost Writer",
-body: "Well this is awkard, there's supposed to be something here.",
-category: null,
-deleted: false,
-id: null,
-timestamp: null,
-title: "Loading...",
-voteScore: 0,
-}]
-
-const postsReducer = (state = initialState, action) => {
+const postsReducer = (state = [], action) => {
   switch (action.type) {
     case RECIEVE_POSTS:
       return action.response.data
