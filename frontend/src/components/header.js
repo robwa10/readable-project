@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = (props) => {
-  return (
+const Header = (props) => (
     <div className="header container-fluid">
       <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
         <div className="container">
@@ -20,6 +19,5 @@ const Header = (props) => {
       </Link>
     </div>
   );
-}
 
 export default Header;
