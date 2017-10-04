@@ -4,6 +4,7 @@ import {
   RECIEVE_POSTS,
   RECIEVE_POST,
   RECIEVE_CATEGORIES,
+  CHANGE_POST_SCORE,
   INCREMENT,
   DECREMENT, }
   from '../actions';
@@ -13,7 +14,10 @@ const postsReducer = (state = [], action) => {
     case RECIEVE_POSTS:
       return action.response.data
     case RECIEVE_POST:
-      return action.response.data
+      return [action.response.data]
+    case CHANGE_POST_SCORE:
+      console.log(action);
+      return state;
     default:
       return state;
   }
