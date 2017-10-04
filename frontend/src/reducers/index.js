@@ -9,13 +9,14 @@ import {
 
   const changeScore = (state, action) => {
     const data = action.response.data;
-    let newArray = state.slice();
-    newArray.map((post, index) => {
-      if (post.id === data.id) {
-        return post.voteScore = data.voteScore
+    return state.map((post) => {
+      if (post.id !== data.id) {
+        return post
       }
+      return Object.assign({}, post, {
+        voteScore: data.voteScore
+      })
     })
-    return newArray;
   }
 
 const postsReducer = (state = [], action) => {
