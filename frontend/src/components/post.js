@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import VoteButton from '../components/vote-button';
+import VoteButton from '../containers/vote-button';
 
 class Post extends Component {
   componentDidMount() {
     this.fetchData();
-
   };
 
   fetchData() {
-    const { id, getSinglePost } = this.props;
-    getSinglePost(id);
+    console.log('Match id: ', this.props.match.params.id);
+    this.props.getSinglePost(this.props.match.params.id);
   };
 
+
   render () {
-    const { title, body, author, voteScore, id } = this.props.post;
+    const { title,
+      body,
+      author,
+      voteScore,
+      id, } = this.props.posts;
+      console.log('ID: ', id);
+      console.log('Singel Post: ', this.props);
     return (
       <div className="container">
         <div className="card">
@@ -40,7 +46,7 @@ class Post extends Component {
 const mapStateToProps = (state, { match }) => {
   const id = match.params.id;
   return {
-    post: state.post,
+    posts: state.posts,
     id,
   }
 };
