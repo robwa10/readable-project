@@ -7,22 +7,21 @@ import VoteButton from '../containers/vote-button';
 
 class VisiblePosts extends Component {
   componentDidMount() {
-    this.props.getPosts('posts');
+    this.fetchData()
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.filter !== prevProps.filter) {
-      if (this.props.filter === 'posts' || undefined) {
-        this.props.getPosts('posts');
-      } else {
-        this.props.getPostsByCategory(this.props.filter);
-      }
+      this.fetchData()
     }
   }
 
   fetchData() {
-    const { filter, getPosts } = this.props;
-    getPosts(filter);
+    if (this.props.filter === 'posts' || undefined) {
+      this.props.getPosts('posts');
+    } else {
+      this.props.getPostsByCategory(this.props.filter);
+    }
   }
 
   render() {
