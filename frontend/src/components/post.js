@@ -4,10 +4,24 @@ import * as actions from '../actions';
 import VoteButton from '../containers/vote-button';
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.postScore = this.postScore.bind(this);
+    this.commentScore = this.commentScore.bind(this);
+  }
+
   componentDidMount() {
     this.props.getSinglePost(this.props.match.params.id);
     this.props.getPostComments(this.props.match.params.id);
   };
+
+  postScore(id, option) {
+    this.props.postVote(id, option)
+  }
+
+  commentScore(id, option) {
+    this.props.commentVote(id, option)
+  }
 
   render () {
     return (
@@ -23,6 +37,8 @@ class Post extends Component {
             </div>
             <h6>{`Author: ${this.props.posts[0].author}`}</h6>
             <VoteButton
+              increment={() => this.postScore(this.props.posts[0].id, 'upVote')}
+              decrement={() => this.postScore(this.props.posts[0].id, 'downVote')}
               voteScore={this.props.posts[0].voteScore}
               id={this.props.posts[0].id}
             />
@@ -49,6 +65,8 @@ class Post extends Component {
                 </div>
                 <h6>{`Author: ${comment.author}`}</h6>
                 <VoteButton
+                  increment={() => this.commentScore(comment.id, 'upVote')}
+                  decrement={() => this.commentScore(comment.id, 'downVote')}
                   voteScore={comment.voteScore}
                   id={comment.id}
                 />
