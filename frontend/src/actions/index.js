@@ -3,8 +3,9 @@ import axios from 'axios';
 export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
-export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
 export const RECIEVE_COMMENTS = 'RECIEVE_COMMENTS';
+export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
+export const CHANGE_COMMENT_SCORE = 'CHANGE_COMMENT_SCORE';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -60,5 +61,12 @@ export const postVote = (id, option) => {
   return function(dispatch) {
     return axios.post(`${BASE_URL}/posts/${id}`,{ option },{ headers })
     .then(response => dispatch({ type: CHANGE_POST_SCORE, response }));
+  }
+}
+
+export const commentVote = (id, option) => {
+  return function(dispatch) {
+    return axios.post(`${BASE_URL}/posts/${id}`,{ option },{ headers })
+    .then(response => dispatch({ type: CHANGE_COMMENT_SCORE, response }));
   }
 }
