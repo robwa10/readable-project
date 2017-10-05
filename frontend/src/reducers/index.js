@@ -17,20 +17,7 @@ const changeScore = (state, action) => {
       voteScore: data.voteScore
     })
   })
-}
-
-const postsReducer = (state = [], action) => {
-  switch (action.type) {
-    case RECIEVE_POSTS:
-      return action.response.data
-    case RECIEVE_POST:
-      return [action.response.data]
-    case CHANGE_POST_SCORE:
-      return changeScore(state, action);
-    default:
-      return state;
-  }
-}
+};
 
 const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
@@ -46,15 +33,39 @@ const categoriesReducer = (state = ["categories"], action) => {
   }
 };
 
+const postsReducer = (state = [], action) => {
+  switch (action.type) {
+    case RECIEVE_POSTS:
+      return action.response.data
+    case RECIEVE_POST:
+      return [action.response.data]
+    case CHANGE_POST_SCORE:
+      return changeScore(state, action);
+    default:
+      return state;
+  }
+};
+
+const commentsReducer = (state = [], action) => {
+  switch (action.type) {
+    case expression:
+      return action.response.data
+    default:
+      return state;
+  }
+}
+
+
 const filterOptions = () => (
   ["Newest", "Score - Highest First"]
-)
+);
 
 
 const rootReducer = combineReducers({
   posts: postsReducer,
   categories: categoriesReducer,
   options: filterOptions,
+  comments: commentsReducer,
 });
 
 export default rootReducer;
