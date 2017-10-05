@@ -24,23 +24,24 @@ class Post extends Component {
   }
 
   render () {
+    const p = this.props.posts[0];
     return (
       <div className="container">
-        {this.props.posts[0] === undefined ?
+        {p === undefined ?
         null
         :
         <div className="card">
           <div className="card-body">
-            <div className="card-title"><h2>{this.props.posts[0].title}</h2></div>
+            <div className="card-title"><h2>{p.title}</h2></div>
             <div className="card-text">
-              <p>{this.props.posts[0].body}</p>
+              <p>{p.body}</p>
             </div>
-            <h6>{`Author: ${this.props.posts[0].author}`}</h6>
+            <h6>{`Author: ${p.author}`}</h6>
             <VoteButton
-              increment={() => this.postScore(this.props.posts[0].id, 'upVote')}
-              decrement={() => this.postScore(this.props.posts[0].id, 'downVote')}
-              voteScore={this.props.posts[0].voteScore}
-              id={this.props.posts[0].id}
+              increment={() => this.postScore(p.id, 'upVote')}
+              decrement={() => this.postScore(p.id, 'downVote')}
+              voteScore={p.voteScore}
+              id={p.id}
             />
             <div className="row">
               <div>
@@ -56,7 +57,7 @@ class Post extends Component {
           </div>
         </div>
         }
-        {this.props.comments !== undefined
+        {this.props.comments.length > 0
           ? this.props.comments.map((comment) => (
             <div key={comment.id} className="card mt-3">
               <div className="card-body">
@@ -81,7 +82,14 @@ class Post extends Component {
               </div>
             </div>
           ))
-          : null
+          :
+          <div className="card mt-3">
+            <div className="card-body">
+              <div className="card-text">
+                <p>You should add a comment.</p>
+              </div>
+            </div>
+          </div>
         }
       </div>
     );
