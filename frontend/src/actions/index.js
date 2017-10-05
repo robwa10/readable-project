@@ -66,7 +66,7 @@ export const postVote = (id, option) => {
 
 export const commentVote = (id, option) => {
   return function(dispatch) {
-    return axios.post(`${BASE_URL}/posts/${id}`,{ option },{ headers })
+    return axios.post(`${BASE_URL}/comments/${id}`,{ option },{ headers })
     .then(response => dispatch({ type: CHANGE_COMMENT_SCORE, response }));
   }
 }
