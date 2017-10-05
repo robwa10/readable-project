@@ -10,7 +10,6 @@ class Post extends Component {
   };
 
   render () {
-    console.log("Post Comments: ", this.props.comments);
     return (
       <div className="container">
         {this.props.posts[0] === undefined ?

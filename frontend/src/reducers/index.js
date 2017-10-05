@@ -48,10 +48,8 @@ const postsReducer = (state = [], action) => {
 };
 
 const commentsReducer = (state = [], action) => {
-  console.log("comments reducer: ", action);
   switch (action.type) {
     case RECIEVE_COMMENTS:
-      console.log("RECIEVE_COMMENTS: ", action.response.data);
       return action.response.data
     default:
       return state;
