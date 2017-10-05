@@ -4,6 +4,7 @@ export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
 export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
+export const RECIEVE_COMMENTS = 'RECIEVE_COMMENTS';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -44,6 +45,13 @@ export const getCategories = () => {
   return function(dispatch) {
     return axios.get(`${BASE_URL}/categories`, { headers })
     .then(response => dispatch({ type: RECIEVE_CATEGORIES, response}))
+  }
+}
+
+export const getPostComments = () => {
+  return function(dispatch) {
+    return axios.get(`${BASE_URL}/posts/${id}/comments`, { headers })
+    .then(response => dispatch({ type: RECIEVE_COMMENTS, response}))
   }
 }
 
