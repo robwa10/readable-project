@@ -5,16 +5,17 @@ import {
   RECIEVE_CATEGORIES,
   RECIEVE_COMMENTS,
   CHANGE_POST_SCORE,
+  CHANGE_COMMENT_SCORE,
   }
   from '../actions';
 
 const changeScore = (state, action) => {
   const data = action.response.data;
-  return state.map((post) => {
-    if (post.id !== data.id) {
-      return post
+  return state.map((item) => {
+    if (item.id !== data.id) {
+      return item
     }
-    return Object.assign({}, post, {
+    return Object.assign({}, item, {
       voteScore: data.voteScore
     })
   })
@@ -51,6 +52,8 @@ const commentsReducer = (state = [], action) => {
   switch (action.type) {
     case RECIEVE_COMMENTS:
       return action.response.data
+    case CHANGE_COMMENT_SCORE:
+      return changeScore(state, action)
     default:
       return state;
   }
