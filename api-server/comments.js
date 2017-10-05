@@ -15,7 +15,7 @@ const defaultData = {
   },
   "8tu4bsun805n8un48ve89": {
     id: '8tu4bsun805n8un48ve89',
-    parentId: "8xf0y6ziyjabvozdd253nd",
+    parentId: "8xf0y6zyuviuyvd",
     timestamp: 1469479767190,
     body: 'Comments. Are. Cool.',
     author: 'thingone',

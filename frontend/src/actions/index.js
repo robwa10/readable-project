@@ -48,9 +48,10 @@ export const getCategories = () => {
   }
 }
 
-export const getPostComments = () => {
+export const getPostComments = (filter) => {
+  console.log("get comments: ", filter);
   return function(dispatch) {
-    return axios.get(`${BASE_URL}/posts/${id}/comments`, { headers })
+    return axios.get(`${BASE_URL}/posts/${filter}/comments`, { headers })
     .then(response => dispatch({ type: RECIEVE_COMMENTS, response}))
   }
 }

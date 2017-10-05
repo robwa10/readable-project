@@ -3,6 +3,7 @@ import {
   RECIEVE_POSTS,
   RECIEVE_POST,
   RECIEVE_CATEGORIES,
+  RECIEVE_COMMENTS,
   CHANGE_POST_SCORE,
   }
   from '../actions';
@@ -47,8 +48,10 @@ const postsReducer = (state = [], action) => {
 };
 
 const commentsReducer = (state = [], action) => {
+  console.log("comments reducer: ", action);
   switch (action.type) {
-    case expression:
+    case RECIEVE_COMMENTS:
+      console.log("RECIEVE_COMMENTS: ", action.response.data);
       return action.response.data
     default:
       return state;
