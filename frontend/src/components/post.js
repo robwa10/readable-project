@@ -27,11 +27,16 @@ class Post extends Component {
               voteScore={this.props.posts[0].voteScore}
               id={this.props.posts[0].id}
             />
-            <div>
-              <button className="btn btn-secondary mt-3">Add comment</button>
-            </div>
-            <div>
-              <button className="btn btn-secondary mt-3">Edit</button>
+            <div className="row">
+              <div>
+                <button className="btn btn-link mt-3 col-4">Comment</button>
+              </div>
+              <div>
+                <button className="btn btn-link mt-3 col-4">Edit</button>
+              </div>
+              <div>
+                <button className="btn btn-link mt-3 col-4">Delete</button>
+              </div>
             </div>
           </div>
         </div>
@@ -48,7 +53,14 @@ class Post extends Component {
                   voteScore={comment.voteScore}
                   id={comment.id}
                 />
-                <button className="btn btn-secondary mt-3">Edit</button>
+                <div className="row">
+                  <div>
+                    <button className="btn btn-link mt-3 col-4">Edit</button>
+                  </div>
+                  <div>
+                    <button className="btn btn-link mt-3 col-4">Delete</button>
+                  </div>
+                </div>
               </div>
             </div>
           ))

@@ -45,6 +45,14 @@ class VisiblePosts extends Component {
                         voteScore={p.voteScore}
                         id={p.id}
                       />
+                      <div className="row">
+                        <div>
+                          <button className="btn btn-link mt-3 col-4">Edit</button>
+                        </div>
+                        <div>
+                          <button className="btn btn-link mt-3 col-4">Delete</button>
+                        </div>
+                      </div>
                       {/* Add a <hr /> under all but last post */}
                       {index + 1 !== this.props.posts.length ?  <hr /> : null}
                     </div>
