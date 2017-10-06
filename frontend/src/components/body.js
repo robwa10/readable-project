@@ -7,6 +7,7 @@ const Body = () => (
   <div>
     <Switch>
       <Route exact path='/create/new_post' component={NewPost} />
+      <Route exact path='/edit_post/:id' component={NewPost} />
       <Route path='/' component={HomePage} />
     </Switch>
   </div>
