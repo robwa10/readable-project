@@ -34,12 +34,21 @@ class NewPost extends Component {
     })
   }
 
+  onChange(field, value) {
+    if (field === 'title') {
+      this.setState({ title: value });
+    } else if (field === 'body') {
+      this.setState({ body: value });
+    } else if (field === 'author') {
+      this.setState({ author: value });
+    } else if (field === 'category') {
+      this.setState({ category: value });
+    } else {
+      console.log('Input not returning correct value.');
+    }
+ }
+
   render () {
-    const {
-      title,
-      body,
-      author,
-    } = this.props.editPost;
     return (
       <div className="container">
         <div className="card">
@@ -47,19 +56,19 @@ class NewPost extends Component {
             <form>
               <div className="form-group">
                 <label htmlFor="postTitle">Post Title</label>
-                <input type="text" className="form-control" id="postTitle" value={this.state.title}/>
+                <input type="text" className="form-control" id="postTitle" onChange={(event) => this.onChange('title', event.target.value)} value={this.state.title}/>
               </div>
               <div className="form-group">
                 <label htmlFor="postBody">Post</label>
-                <textarea className="form-control" id="postBody" rows="10" value={this.state.body}></textarea>
+                <textarea className="form-control" id="postBody" rows="10" onChange={(event) => this.onChange('body', event.target.value)} value={this.state.body}></textarea>
               </div>
               <div className="form-group">
                 <label htmlFor="postAuthor">Author</label>
-                <input type="text" className="form-control" id="postAuthor" value={this.state.author}/>
+                <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChange('author', event.target.value)} value={this.state.author}/>
               </div>
               <div className="form-group">
                 <label htmlFor="categoryChoice">Category</label>
-                <select className="form-control" id="categoryChoice">
+                <select onChange={(event) => this.onChange('category', event.target.value)} className="form-control" id="categoryChoice">
                   {this.props.categories.map(cat =>
                     (<option key={cat} value={cat}>{cat}</option>)
                     )
@@ -82,7 +91,6 @@ const mapStateToProps = (state, { match }) => {
     categories: state.categories,
     editPost: state.editPost,
   }
-
 }
 
 export default connect(mapStateToProps, actions)(NewPost);
