@@ -9,6 +9,13 @@ import {
   }
   from '../actions';
 
+const mapCategories = (action) => {
+  const categories = action.response.data.categories;
+  let newArray = [];
+  categories.map(cat => newArray.push(cat.name));
+  return newArray
+}
+
 const changeScore = (state, action) => {
   const data = action.response.data;
   return state.map((item) => {
@@ -24,12 +31,7 @@ const changeScore = (state, action) => {
 const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
     case RECIEVE_CATEGORIES:
-      let categories = action.response.data.categories;
-      return categories.map((cat) => {
-        let array = [];
-        array.push(cat.name);
-        return array
-      });
+      return mapCategories(action)
     default:
       return state;
   }
