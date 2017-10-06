@@ -19,7 +19,28 @@ class NewPost extends Component {
     this.props.getCategories();
   }
 
+  componentWillReceiveProps() {
+    if (this.props.posts[0] !== undefined) {
+      this.editPost();
+    }
+  }
+
+  editPost() {
+    const p = this.props.posts[0];
+    this.setState({
+      title: p.title,
+      body: p.body,
+      author: p.author,
+    })
+  }
+
   render () {
+    console.log('Edit State: ', this.state);
+    const {
+      title,
+      body,
+      author,
+    } = this.props.editPost;
     return (
       <div className="container">
         <div className="card">
@@ -27,21 +48,21 @@ class NewPost extends Component {
             <form>
               <div className="form-group">
                 <label htmlFor="postTitle">Post Title</label>
-                <input type="text" className="form-control" id="postTitle"/>
+                <input type="text" className="form-control" id="postTitle" value={this.state.title}/>
               </div>
               <div className="form-group">
                 <label htmlFor="postBody">Post</label>
-                <textarea className="form-control" id="postBody" rows="10"></textarea>
+                <textarea className="form-control" id="postBody" rows="10" value={this.state.body}></textarea>
               </div>
               <div className="form-group">
                 <label htmlFor="postAuthor">Author</label>
-                <input type="text" className="form-control" id="postAuthor"/>
+                <input type="text" className="form-control" id="postAuthor" value={this.state.author}/>
               </div>
               <div className="form-group">
                 <label htmlFor="categoryChoice">Category</label>
                 <select className="form-control" id="categoryChoice">
                   {this.props.categories.map(cat =>
-                    (<option key={cat}>{cat}</option>)
+                    (<option key={cat} value={cat}>{cat}</option>)
                     )
                   }
                 </select>
@@ -55,8 +76,14 @@ class NewPost extends Component {
   };
 }
 
-const mapStateToProps = (state) => ({
-  categories: state.categories,
-})
+const mapStateToProps = (state, { match }) => {
+  const id = match.params.id;
+  return {
+    posts: state.posts,
+    categories: state.categories,
+    editPost: state.editPost,
+  }
+
+}
 
 export default connect(mapStateToProps, actions)(NewPost);
