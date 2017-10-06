@@ -17,7 +17,7 @@ class Sidebar extends Component {
             <h4>Filter</h4>
             <div className="row">
             {this.props.categories.map(cat => {
-              const c = cat[0];
+              const c = cat;
               return (
                 <Link
                   key={c}
