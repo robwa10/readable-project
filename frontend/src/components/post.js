@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import VoteButton from '../containers/vote-button';
@@ -48,7 +49,7 @@ class Post extends Component {
                 <button className="btn btn-link mt-3 col-4">Comment</button>
               </div>
               <div>
-                <button className="btn btn-link mt-3 col-4">Edit</button>
+                <Link to={`/edit_post/${this.props.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
               </div>
               <div>
                 <button className="btn btn-link mt-3 col-4">Delete</button>
