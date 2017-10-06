@@ -14,7 +14,7 @@
 // Now that I've Stated that...you're right that was a horrible joke.
 
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import ReactDOM from 'react-dom';
@@ -23,11 +23,16 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import './App.css';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(thunk)
+  ));
+
 // Note: this API requires redux@>=3.1.0
-const store = createStore(
-  reducer,
-  applyMiddleware(thunk)
-);
+//const store = createStore(
+//  reducer,
+//  applyMiddleware(thunk)
+//);
 
 //const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 //creatStoreWithMiddleware(reducer)
