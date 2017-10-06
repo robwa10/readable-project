@@ -35,7 +35,6 @@ class NewPost extends Component {
   }
 
   render () {
-    console.log('Edit State: ', this.state);
     const {
       title,
       body,
