@@ -6,6 +6,12 @@ import PostPreview from '../components/post-preview';
 import VoteButton from '../containers/vote-button';
 
 class VisiblePosts extends Component {
+  constructor(props) {
+    super(props);
+    this.postScore = this.postScore.bind(this);
+    this.commentScore = this.commentScore.bind(this);
+  }
+
   componentDidMount() {
     this.fetchData()
   }
@@ -14,6 +20,14 @@ class VisiblePosts extends Component {
     if (this.props.filter !== prevProps.filter) {
       this.fetchData()
     }
+  }
+
+  postScore(id, option) {
+    this.props.postVote(id, option)
+  }
+
+  commentScore(id, option) {
+    this.props.commentVote(id, option)
   }
 
   fetchData() {
@@ -42,6 +56,8 @@ class VisiblePosts extends Component {
                         author={p.author}
                       />
                       <VoteButton
+                        increment={() => this.postScore(p.id, 'upVote')}
+                        decrement={() => this.postScore(p.id, 'downVote')}
                         voteScore={p.voteScore}
                         id={p.id}
                       />
