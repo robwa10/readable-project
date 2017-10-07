@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import _ from 'lodash';
 import VoteButton from '../containers/vote-button';
 
 class Post extends Component {
@@ -25,41 +26,43 @@ class Post extends Component {
   }
 
   render () {
-    const p = this.props.posts[0];
     return (
       <div className="container">
-        {p === undefined ?
-        null
-        :
-        <div className="card">
-          <div className="card-body">
-            <div className="card-title"><h2>{p.title}</h2></div>
-            <div className="card-text">
-              <p>{p.body}</p>
+        {Object.keys(this.props.posts).length > 0
+          ?
+          _.map(this.props.posts, (p) => (
+            <div key={p.id} className="card">
+              <div className="card-body">
+                <div className="card-title"><h2>{p.title}</h2></div>
+                <div className="card-text">
+                  <p>{p.body}</p>
+                </div>
+                <h6>{`Author: ${p.author}`}</h6>
+                <VoteButton
+                  increment={() => this.postScore(p.id, 'upVote')}
+                  decrement={() => this.postScore(p.id, 'downVote')}
+                  voteScore={p.voteScore}
+                  id={p.id}
+                />
+                <div className="row">
+                  <div>
+                    <button className="btn btn-link mt-3 col-4">Comment</button>
+                  </div>
+                  <div>
+                    <Link to={`/edit_post/${this.props.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
+                  </div>
+                  <div>
+                    <button className="btn btn-link mt-3 col-4">Delete</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h6>{`Author: ${p.author}`}</h6>
-            <VoteButton
-              increment={() => this.postScore(p.id, 'upVote')}
-              decrement={() => this.postScore(p.id, 'downVote')}
-              voteScore={p.voteScore}
-              id={p.id}
-            />
-            <div className="row">
-              <div>
-                <button className="btn btn-link mt-3 col-4">Comment</button>
-              </div>
-              <div>
-                <Link to={`/edit_post/${this.props.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
-              </div>
-              <div>
-                <button className="btn btn-link mt-3 col-4">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
+          ))
+          : null
         }
-        {this.props.comments.length > 0
-          ? this.props.comments.map((comment) => (
+
+        {Object.keys(this.props.comments).length > 0
+          ? _.map(this.props.comments, (comment) => (
             <div key={comment.id} className="card mt-3">
               <div className="card-body">
                 <div className="card-text">

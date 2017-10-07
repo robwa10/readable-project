@@ -19,13 +19,9 @@ const mapCategories = (action) => {
 
 const changeScore = (state, action) => {
   const data = action.response.data;
-  return _.map(state, item => {
-    if (item.id !== data.id) {
-      return item
-    }
-    return Object.assign({}, item, {
-      voteScore: data.voteScore
-    })
+  const id = action.response.data.id;
+  return Object.assign({}, state, {
+    [id]: data,
   })
 };
 
@@ -41,8 +37,9 @@ const categoriesReducer = (state = ["categories"], action) => {
 const postsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECIEVE_POSTS:
+      return _.mapKeys(action.response.data, 'id');
     case RECIEVE_POST:
-      return _.mapKeys(action.response.data, 'id')
+      return {[action.response.data.id]: action.response.data}
     case CHANGE_POST_SCORE:
       return changeScore(state, action);
     default:
@@ -50,10 +47,10 @@ const postsReducer = (state = {}, action) => {
   }
 };
 
-const commentsReducer = (state = [], action) => {
+const commentsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECIEVE_COMMENTS:
-      return action.response.data
+      return _.mapKeys(action.response.data, 'id');
     case CHANGE_COMMENT_SCORE:
       return changeScore(state, action)
     default:
