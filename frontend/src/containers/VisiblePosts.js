@@ -41,11 +41,11 @@ class VisiblePosts extends Component {
 
   renderPosts() {
     const postsCount = Object.keys(this.props.posts).length;
-    let counter = 1;
+    let counter = 0;
     return _.map(this.props.posts, (p, index) => {
       counter++
       return (
-        <div key={p.id}>
+        <div key={counter + postsCount}>
           <PostPreview
             id={`/${p.category}/${p.id}`}
             title={p.title}
@@ -67,7 +67,7 @@ class VisiblePosts extends Component {
             </div>
           </div>
           {/* Add a <hr /> under all but last post */}
-          {counter <= postsCount  ?  <hr /> : null}
+          {counter < postsCount  ?  <hr /> : null}
         </div>
       );
     })
@@ -80,7 +80,7 @@ class VisiblePosts extends Component {
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
-              {this.renderPosts()}
+              {this.props.posts === undefined ? null : this.renderPosts()}
             </div>
           </div>
         </div>
