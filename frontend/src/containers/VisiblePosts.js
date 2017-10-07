@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import _ from 'lodash';
@@ -60,7 +61,7 @@ class VisiblePosts extends Component {
           />
           <div className="row">
             <div>
-              <button className="btn btn-link mt-3 col-4">Edit</button>
+              <Link to={`/edit_post/${p.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
             </div>
             <div>
               <button className="btn btn-link mt-3 col-4">Delete</button>
@@ -89,10 +90,10 @@ class VisiblePosts extends Component {
   }
 }
 
-const mapStateToProps = (state, { match }) => {
+const mapStateToProps = ({ posts }, { match }) => {
   let filter = match.params.filter || 'posts';
     return {
-    posts: state.posts,
+    posts: posts,
     filter,
   }
 };
