@@ -45,8 +45,6 @@ class NewPost extends Component {
  }
 
   render () {
-    console.log('State: ', this.state);
-    console.log('Posts: ', this.props.posts);
     return (
       <div className="container">
         <div className="card">
