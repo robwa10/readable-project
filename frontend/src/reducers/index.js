@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { combineReducers } from 'redux';
 import {
   RECIEVE_POSTS,
@@ -37,12 +38,11 @@ const categoriesReducer = (state = ["categories"], action) => {
   }
 };
 
-const postsReducer = (state = [], action) => {
+const postsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECIEVE_POSTS:
-      return action.response.data
     case RECIEVE_POST:
-      return [action.response.data]
+      return _.mapKeys(action.response.data, 'id')
     case CHANGE_POST_SCORE:
       return changeScore(state, action);
     default:
