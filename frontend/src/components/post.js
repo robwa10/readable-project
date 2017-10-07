@@ -26,30 +26,32 @@ class Post extends Component {
   }
 
   render () {
+    const {
+      post
+    } = this.props
     return (
       <div className="container">
-        {Object.keys(this.props.posts).length > 0
+        {post !== undefined
           ?
-          _.map(this.props.posts, (p) => (
-            <div key={p.id} className="card">
+            <div key={post.id} className="card">
               <div className="card-body">
-                <div className="card-title"><h2>{p.title}</h2></div>
+                <div className="card-title"><h2>{post.title}</h2></div>
                 <div className="card-text">
-                  <p>{p.body}</p>
+                  <p>{post.body}</p>
                 </div>
-                <h6>{`Author: ${p.author}`}</h6>
+                <h6>{`Author: ${post.author}`}</h6>
                 <VoteButton
-                  increment={() => this.postScore(p.id, 'upVote')}
-                  decrement={() => this.postScore(p.id, 'downVote')}
-                  voteScore={p.voteScore}
-                  id={p.id}
+                  increment={() => this.postScore(post.id, 'upVote')}
+                  decrement={() => this.postScore(post.id, 'downVote')}
+                  voteScore={post.voteScore}
+                  id={post.id}
                 />
                 <div className="row">
                   <div>
                     <button className="btn btn-link mt-3 col-4">Comment</button>
                   </div>
                   <div>
-                    <Link to={`/edit_post/${this.props.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
+                    <Link to={`/edit_post/${post.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
                   </div>
                   <div>
                     <button className="btn btn-link mt-3 col-4">Delete</button>
@@ -57,7 +59,6 @@ class Post extends Component {
                 </div>
               </div>
             </div>
-          ))
           : null
         }
 
@@ -103,7 +104,7 @@ class Post extends Component {
 const mapStateToProps = (state, { match }) => {
   const id = match.params.id;
   return {
-    posts: state.posts,
+    post: state.posts[id],
     comments: state.comments,
     id,
   }
