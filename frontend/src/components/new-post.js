@@ -16,17 +16,13 @@ class NewPost extends Component {
   }
 
   componentDidMount() {
-    this.props.getCategories();
-  }
-
-  componentWillReceiveProps() {
-    if (this.props.posts[0] !== undefined) {
+    if (this.props.posts !== undefined) {
       this.editPost();
     }
   }
 
   editPost() {
-    const p = this.props.posts[0];
+    const p = this.props.posts;
     this.setState({
       title: p.title,
       body: p.body,
@@ -49,6 +45,8 @@ class NewPost extends Component {
  }
 
   render () {
+    console.log('State: ', this.state);
+    console.log('Posts: ', this.props.posts);
     return (
       <div className="container">
         <div className="card">
@@ -87,7 +85,7 @@ class NewPost extends Component {
 const mapStateToProps = (state, { match }) => {
   const id = match.params.id;
   return {
-    posts: state.posts,
+    posts: state.posts[id],
     categories: state.categories,
     editPost: state.editPost,
   }
