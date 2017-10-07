@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import _ from 'lodash';
 import Sidebar from '../containers/sidebar';
 import PostPreview from '../components/post-preview';
 import VoteButton from '../containers/vote-button';
@@ -38,6 +39,40 @@ class VisiblePosts extends Component {
     }
   }
 
+  renderPosts() {
+    const postsCount = Object.keys(this.props.posts).length;
+    let counter = 1;
+    return _.map(this.props.posts, (p, index) => {
+      counter++
+      return (
+        <div key={p.id}>
+          <PostPreview
+            id={`/${p.category}/${p.id}`}
+            title={p.title}
+            score={p.voteScore}
+            author={p.author}
+          />
+          <VoteButton
+            increment={() => this.postScore(p.id, 'upVote')}
+            decrement={() => this.postScore(p.id, 'downVote')}
+            voteScore={p.voteScore}
+            id={p.id}
+          />
+          <div className="row">
+            <div>
+              <button className="btn btn-link mt-3 col-4">Edit</button>
+            </div>
+            <div>
+              <button className="btn btn-link mt-3 col-4">Delete</button>
+            </div>
+          </div>
+          {/* Add a <hr /> under all but last post */}
+          {counter <= postsCount  ?  <hr /> : null}
+        </div>
+      );
+    })
+  }
+
   render() {
     return (
       <div className="row">
@@ -45,45 +80,15 @@ class VisiblePosts extends Component {
         <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
-              {Array.isArray(this.props.posts)
-                ? this.props.posts.map((p, index) => {
-                  return (
-                    <div key={p.id}>
-                      <PostPreview
-                        id={`/${p.category}/${p.id}`}
-                        title={p.title}
-                        score={p.voteScore}
-                        author={p.author}
-                      />
-                      <VoteButton
-                        increment={() => this.postScore(p.id, 'upVote')}
-                        decrement={() => this.postScore(p.id, 'downVote')}
-                        voteScore={p.voteScore}
-                        id={p.id}
-                      />
-                      <div className="row">
-                        <div>
-                          <button className="btn btn-link mt-3 col-4">Edit</button>
-                        </div>
-                        <div>
-                          <button className="btn btn-link mt-3 col-4">Delete</button>
-                        </div>
-                      </div>
-                      {/* Add a <hr /> under all but last post */}
-                      {index + 1 !== this.props.posts.length ?  <hr /> : null}
-                    </div>
-                  );
-                })
-                : null
-              }
+              {this.renderPosts()}
             </div>
           </div>
         </div>
       </div>
     )
   }
-
 }
+
 const mapStateToProps = (state, { match }) => {
   let filter = match.params.filter || 'posts';
     return {
