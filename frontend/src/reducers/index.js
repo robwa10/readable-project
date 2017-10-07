@@ -19,7 +19,7 @@ const mapCategories = (action) => {
 
 const changeScore = (state, action) => {
   const data = action.response.data;
-  return state.map((item) => {
+  return _.map(state, item => {
     if (item.id !== data.id) {
       return item
     }
