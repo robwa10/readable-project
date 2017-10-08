@@ -32,6 +32,12 @@ class Post extends Component {
     })
   }
 
+  commentDelete(id) {
+    this.props.deleteComment(id, () => {
+      this.props.history.push('/')
+    })
+  }
+
   render () {
     const {
       post
@@ -88,7 +94,7 @@ class Post extends Component {
                     <button className="btn btn-link mt-3 col-4">Edit</button>
                   </div>
                   <div>
-                    <button className="btn btn-link mt-3 col-4">Delete</button>
+                    <button onClick={() => this.commentDelete(comment.id)} className="btn btn-link mt-3 col-4">Delete</button>
                   </div>
                 </div>
               </div>
