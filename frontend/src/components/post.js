@@ -10,6 +10,7 @@ class Post extends Component {
     super(props);
     this.postScore = this.postScore.bind(this);
     this.commentScore = this.commentScore.bind(this);
+    this.postDelete = this.postDelete.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +24,12 @@ class Post extends Component {
 
   commentScore(id, option) {
     this.props.commentVote(id, option)
+  }
+
+  postDelete(id) {
+    this.props.deletePost(id, () => {
+      this.props.history.push('/')
+    })
   }
 
   render () {
@@ -54,7 +61,7 @@ class Post extends Component {
                     <Link to={`/edit_post/${post.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
                   </div>
                   <div>
-                    <button className="btn btn-link mt-3 col-4">Delete</button>
+                    <button onClick={() => this.deletePost(post.id)} className="btn btn-link mt-3 col-4">Delete</button>
                   </div>
                 </div>
               </div>
