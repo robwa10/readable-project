@@ -12,6 +12,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_POST = 'DELETE_POST';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const EDIT_POST = 'EDIT_POST';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -101,6 +102,14 @@ export const createComment = (values, callback) => {
 }
 
 //---------- PUT API Action Creators
+export const editPost = (id, values, callback) => {
+  return function(dispatch) {
+    return axios.put(`${BASE_URL}/posts/${id}`,values, { headers })
+    .then(response => dispatch({ type: EDIT_POST, response}))
+    .then(() => callback());
+  }
+}
+
 export const editComment = (id, values, callback) => {
   return function(dispatch) {
     return axios.put(`${BASE_URL}/comments/${id}`,values, { headers })
