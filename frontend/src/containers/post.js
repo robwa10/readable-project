@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import _ from 'lodash';
-import VoteButton from '../containers/vote-button';
+import VoteButton from '../components/vote-button';
 
 class Post extends Component {
   constructor(props) {

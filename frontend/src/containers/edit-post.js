@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createPost, getCategories } from "../actions";
-import uuidv4 from 'uuid/v4'
+import { editPost, getSinglePost } from "../actions";
 
-class NewPost extends Component {
+class EditPost extends Component {
   componentDidMount() {
-    this.props.getCategories();
+    this.props.getSinglePost(this.props.match.params.id);
   }
 
   renderTextField(field) {
@@ -31,8 +30,7 @@ class NewPost extends Component {
 
     return (
       <div className={className}>
-        <label>{field.label}</label>
-        <textarea className="form-control" type="text" rows="15" {...field.input} />
+        <textarea className="form-control" type="text" rows="5" {...field.input} />
         <div className="text-help">
           {touched ? error : ""}
         </div>
@@ -41,14 +39,14 @@ class NewPost extends Component {
   }
 
   onSubmit(values) {
-    const newValues =  {...values, id: uuidv4(), timestamp: Date.now()}
-    this.props.createPost(newValues, () => {
+    const newValues =  {...values }
+    this.props.editPost(this.props.match.params.id, newValues, () => {
       this.props.history.push('/');
     });
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="container">
         <div className="card">
@@ -60,34 +58,11 @@ class NewPost extends Component {
                 component={this.renderTextField}
               />
               <Field
-                label="Body"
                 name="body"
+                value="body"
                 component={this.renderBody}
               />
-              <div className="row">
-                <div className="col-12 col-md-6">
-                  <Field
-                    className="form-control"
-                    label="Author"
-                    name="author"
-                    component={this.renderTextField}
-                  />
-                </div>
-                <div className="col-12 col-md-6">
-                  <label>Categories</label>
-                  <Field
-                    className="form-control"
-                    name="category"
-                    component="select">
-                    <option />
-                    {
-                      this.props.categories.map(cat =>
-                      (<option key={cat} value={cat}>{cat}</option>))
-                    }
-                  </Field>
-                </div>
-                </div>
-              <button type="submit" className="btn btn-link">Submit</button>
+              <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
               <Link to="/" className="btn btn-link">Cancel</Link>
             </form>
           </div>
@@ -107,22 +82,19 @@ function validate(values) {
   if (!values.body) {
     errors.body = "You gotta say something...";
   }
-  if (!values.author) {
-    errors.author = "We need a name, even if it's not yours.";
-  }
-  if (!values.category) {
-    errors.categories = "Pick a category please.";
-  }
   return errors;
 }
 
-const mapStateToProps = (state) => {
-  return {
-    categories: state.categories,
-  }
-}
-
-export default reduxForm({
+EditPost = reduxForm({
   validate,
-  form: "PostsNewForm"
-})(connect(mapStateToProps, { createPost, getCategories })(NewPost));
+  form: "EditPost",
+})(EditPost);
+
+EditPost = connect(
+  (state, { match }) => ({
+    initialValues: state.posts[match.params.id],
+  }),
+  { editPost, getSinglePost }
+)(EditPost);
+
+export default EditPost;
