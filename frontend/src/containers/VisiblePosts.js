@@ -5,7 +5,7 @@ import * as actions from '../actions';
 import _ from 'lodash';
 import Sidebar from '../containers/sidebar';
 import PostPreview from '../components/post-preview';
-import VoteButton from '../containers/vote-button';
+import VoteButton from '../components/vote-button';
 
 class VisiblePosts extends Component {
   constructor(props) {
