@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Header from '../components/header';
 import PostView from '../components/post-view';
 import NewPost from '../containers/new-post';
 import NewComment from '../containers/new-comment';
@@ -8,6 +9,7 @@ import EditPost from '../containers/edit-post';
 
 const Body = () => (
   <div>
+    <Header />
     <Switch>
       <Route exact path='/create/new_post' component={NewPost} />
       <Route exact path='/edit_post/:id' component={EditPost} />

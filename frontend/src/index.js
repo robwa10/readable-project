@@ -20,6 +20,7 @@ import reducer from './reducers';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Body from './components/body';
 import App from './components/App';
 import './App.css';
 
@@ -40,7 +41,7 @@ const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App/>
+      <Body/>
     </BrowserRouter>
   </Provider>, document.getElementById('root')
 );
