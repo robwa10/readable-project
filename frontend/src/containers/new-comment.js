@@ -2,14 +2,10 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createPost, getCategories } from "../actions";
+import { createComment } from "../actions";
 import uuidv4 from 'uuid/v4'
 
 class NewComment extends Component {
-  componentDidMount() {
-    this.props.getCategories();
-  }
-
   renderTextField(field) {
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? "has-danger" : ""}`;
@@ -32,7 +28,7 @@ class NewComment extends Component {
     return (
       <div className={className}>
         <label>{field.label}</label>
-        <textarea className="form-control" type="text" rows="15" {...field.input} />
+        <textarea className="form-control" type="text" rows="5" {...field.input} />
         <div className="text-help">
           {touched ? error : ""}
         </div>
@@ -42,7 +38,7 @@ class NewComment extends Component {
 
   onSubmit(values) {
     const newValues =  {...values, id: uuidv4(), timestamp: Date.now()}
-    this.props.createPost(newValues, () => {
+    this.props.createComment(newValues, () => {
       this.props.history.push('/');
     });
   }
@@ -79,28 +75,16 @@ function validate(values) {
   const errors = {};
 
   // Validate the inputs from 'values'
-  if (!values.title) {
-    errors.title = "Whatcha gonna call this?";
-  }
   if (!values.body) {
     errors.body = "You gotta say something...";
   }
   if (!values.author) {
     errors.author = "We need a name, even if it's not yours.";
   }
-  if (!values.category) {
-    errors.categories = "Pick a category please.";
-  }
   return errors;
-}
-
-const mapStateToProps = (state) => {
-  return {
-    categories: state.categories,
-  }
 }
 
 export default reduxForm({
   validate,
-  form: "PostsNewForm"
-})(connect(mapStateToProps, { createPost, getCategories })(NewComment));
+  form: "PostsNewComment"
+})(connect(mapStateToProps, { createComment })(NewComment));
