@@ -37,7 +37,8 @@ class NewComment extends Component {
   }
 
   onSubmit(values) {
-    const newValues =  {...values, id: uuidv4(), timestamp: Date.now()}
+    const parentId = this.props.match.params.id
+    const newValues =  {...values, id: uuidv4(), timestamp: Date.now(), parentId}
     this.props.createComment(newValues, () => {
       this.props.history.push('/');
     });
