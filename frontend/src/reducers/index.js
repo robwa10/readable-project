@@ -8,6 +8,7 @@ import {
   RECIEVE_COMMENTS,
   CHANGE_POST_SCORE,
   CHANGE_COMMENT_SCORE,
+  DELETE_COMMENT,
   }
   from '../actions';
 
