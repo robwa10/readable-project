@@ -9,6 +9,7 @@ export const CHANGE_COMMENT_SCORE = 'CHANGE_COMMENT_SCORE';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_POST = 'DELETE_POST';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -98,6 +99,14 @@ export const deletePost = (id, callback) => {
   return function(dispatch) {
     return axios.delete(`${BASE_URL}/posts/${id}`, { headers })
     .then(response => dispatch({ type: DELETE_POST, response }))
+    .then(() => callback());
+  }
+}
+
+export const deleteComment = (id, callback) => {
+  return function(dispatch) {
+    return axios.delete(`${BASE_URL}/comments/${id}`, { headers })
+    .then(response => dispatch({ type: DELETE_COMMENT, response }))
     .then(() => callback());
   }
 }
