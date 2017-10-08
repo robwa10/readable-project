@@ -80,4 +80,12 @@ export const createPost = (values, callback) => {
   }
 }
 
+export const createComment = (values, callback) => {
+  return function(dispatch) {
+    return axios.post(`${BASE_URL}/comments`, values, { headers })
+    .then(response => dispatch({ type: ADD_COMMENT, response }))
+    .then(() => callback());
+  }
+}
+
 //---------- PUT API Action Creators
