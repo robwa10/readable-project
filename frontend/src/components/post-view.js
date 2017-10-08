@@ -4,7 +4,7 @@ import VisiblePosts from '../containers/VisiblePosts';
 import Post from '../containers/post';
 import Fab from '../components/fab';
 
-const HomePage = () => (
+const PostView = () => (
   <div>
     <div className="container">
       <Switch>
@@ -15,4 +15,4 @@ const HomePage = () => (
     <Fab />
   </div>
 );
-export default HomePage;
+export default PostView;
