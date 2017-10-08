@@ -6,6 +6,7 @@ export const RECIEVE_POST = 'RECIEVE_POST';
 export const RECIEVE_COMMENTS = 'RECIEVE_COMMENTS';
 export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
 export const CHANGE_COMMENT_SCORE = 'CHANGE_COMMENT_SCORE';
+export const ADD_POST = 'ADD_POST';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -70,3 +71,13 @@ export const commentVote = (id, option) => {
     .then(response => dispatch({ type: CHANGE_COMMENT_SCORE, response }));
   }
 }
+
+export const createPost = (values, callback) => {
+  return function(dispatch) {
+    return axios.post(`${BASE_URL}/posts`, values, { headers })
+    .then(response => dispatch({ type: ADD_POST, response }))
+    .then(() => callback());
+  }
+}
+
+//---------- PUT API Action Creators
