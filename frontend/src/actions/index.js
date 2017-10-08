@@ -7,6 +7,8 @@ export const RECIEVE_COMMENTS = 'RECIEVE_COMMENTS';
 export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
 export const CHANGE_COMMENT_SCORE = 'CHANGE_COMMENT_SCORE';
 export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_POST = 'DELETE_POST';
 
 //---------- Global API variables
 const BASE_URL = "http://localhost:3001";
@@ -89,3 +91,13 @@ export const createComment = (values, callback) => {
 }
 
 //---------- PUT API Action Creators
+
+
+//---------- DELETE API Action Creators
+export const deletePost = (id, callback) => {
+  return function(dispatch) {
+    return axios.delete(`${BASE_URL}/posts/${id}`, { headers })
+    .then(response => dispatch({ type: DELETE_POST, response }))
+    .then(() => callback());
+  }
+}
