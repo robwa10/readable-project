@@ -86,5 +86,5 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "PostsNewComment"
-})(connect(mapStateToProps, { createComment })(NewComment));
+  form: "NewComment"
+})(connect(null, { createComment })(NewComment));
