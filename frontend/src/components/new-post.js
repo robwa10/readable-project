@@ -1,92 +1,128 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createPost, getCategories } from "../actions";
+import uuidv4 from 'uuid/v4'
 
 class NewPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      timestamp: '',
-      title: '',
-      body: '',
-      author: '',
-      category: '',
-    }
-  }
-
   componentDidMount() {
-    if (this.props.posts !== undefined) {
-      this.editPost();
-    }
+    this.props.getCategories();
   }
 
-  editPost() {
-    const p = this.props.posts;
-    this.setState({
-      title: p.title,
-      body: p.body,
-      author: p.author,
-    })
+  renderTextField(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+
+    return (
+      <div className={className}>
+        <label>{field.label}</label>
+        <input type="text" className="form-control" {...field.input} />
+        <div className="text-help">
+          {touched ? error : ""}
+        </div>
+      </div>
+    );
   }
 
-  onChange(field, value) {
-    if (field === 'title') {
-      this.setState({ title: value });
-    } else if (field === 'body') {
-      this.setState({ body: value });
-    } else if (field === 'author') {
-      this.setState({ author: value });
-    } else if (field === 'category') {
-      this.setState({ category: value });
-    } else {
-      console.log('Input not returning correct value.');
-    }
- }
+  renderBody(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? "has-danger" : ""}`;
 
-  render () {
+    return (
+      <div className={className}>
+        <label>{field.label}</label>
+        <textarea className="form-control" type="text" rows="15" {...field.input} />
+        <div className="text-help">
+          {touched ? error : ""}
+        </div>
+      </div>
+    );
+  }
+
+  onSubmit(values) {
+    const newValues =  {...values, id: uuidv4(), timestamp: Date.now()}
+    this.props.createPost(newValues, () => {
+      this.props.history.push('/');
+    });
+  }
+
+  render() {
+    const { handleSubmit } = this.props;
     return (
       <div className="container">
         <div className="card">
           <div className="card-body">
-            <form>
-              <div className="form-group">
-                <label htmlFor="postTitle">Post Title</label>
-                <input type="text" className="form-control" id="postTitle" onChange={(event) => this.onChange('title', event.target.value)} value={this.state.title}/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="postBody">Post</label>
-                <textarea className="form-control" id="postBody" rows="10" onChange={(event) => this.onChange('body', event.target.value)} value={this.state.body}></textarea>
-              </div>
-              <div className="form-group">
-                <label htmlFor="postAuthor">Author</label>
-                <input type="text" className="form-control" id="postAuthor" onChange={(event) => this.onChange('author', event.target.value)} value={this.state.author}/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="categoryChoice">Category</label>
-                <select onChange={(event) => this.onChange('category', event.target.value)} className="form-control" id="categoryChoice">
-                  {this.props.categories.map(cat =>
-                    (<option key={cat} value={cat}>{cat}</option>)
-                    )
-                  }
-                </select>
-              </div>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <Field
+                label="Title"
+                name="title"
+                component={this.renderTextField}
+              />
+              <Field
+                label="Body"
+                name="body"
+                component={this.renderBody}
+              />
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <Field
+                    className="form-control"
+                    label="Author"
+                    name="author"
+                    component={this.renderTextField}
+                  />
+                </div>
+                <div className="col-12 col-md-6">
+                  <label>Categories</label>
+                  <Field
+                    className="form-control"
+                    name="category"
+                    component="select">
+                    <option />
+                    {
+                      this.props.categories.map(cat =>
+                      (<option key={cat} value={cat}>{cat}</option>))
+                    }
+                  </Field>
+                </div>
+                </div>
               <button type="submit" className="btn btn-link">Submit</button>
+              <Link to="/" className="btn btn-link">Cancel</Link>
             </form>
           </div>
         </div>
       </div>
     );
-  };
-}
-
-const mapStateToProps = (state, { match }) => {
-  const id = match.params.id;
-  return {
-    posts: state.posts[id],
-    categories: state.categories,
-    editPost: state.editPost,
   }
 }
 
-export default connect(mapStateToProps, actions)(NewPost);
+function validate(values) {
+  const errors = {};
+
+  // Validate the inputs from 'values'
+  if (!values.title) {
+    errors.title = "Whatcha gonna call this?";
+  }
+  if (!values.body) {
+    errors.body = "You gotta say something...";
+  }
+  if (!values.author) {
+    errors.author = "We need a name, even if it's not yours.";
+  }
+  if (!values.category) {
+    errors.categories = "Pick a category please.";
+  }
+  return errors;
+}
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+  }
+}
+
+export default reduxForm({
+  validate,
+  form: "PostsNewForm"
+})(connect(mapStateToProps, { createPost, getCategories })(NewPost));
