@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from '../components/home-page';
 import NewPost from '../components/new-post';
 import NewComment from '../containers/new-comment';
+import EditComment from '../containers/edit-comment';
 
 const Body = () => (
   <div>
@@ -10,6 +11,7 @@ const Body = () => (
       <Route exact path='/create/new_post' component={NewPost} />
       <Route exact path='/edit_post/:id' component={NewPost} />
       <Route exact path='/comment/:id' component={NewComment} />
+      <Route exact path='/edit_comment/:id' component={EditComment} />
       <Route path='/' component={HomePage} />
     </Switch>
   </div>

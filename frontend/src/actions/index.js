@@ -4,6 +4,7 @@ export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_POST = 'RECIEVE_POST';
 export const RECIEVE_COMMENTS = 'RECIEVE_COMMENTS';
+export const RECIEVE_SINGLE_COMMENT = 'RECIEVE_SINGLE_COMMENT';
 export const CHANGE_POST_SCORE = 'CHANGE_POST_SCORE';
 export const CHANGE_COMMENT_SCORE = 'CHANGE_COMMENT_SCORE';
 export const ADD_POST = 'ADD_POST';
@@ -44,6 +45,13 @@ export const getSinglePost = (filter) => {
   return function(dispatch) {
     return axios.get(`${BASE_URL}/posts/${filter}`, { headers })
       .then(response => dispatch({type: RECIEVE_POST, response}))
+  }
+}
+
+export const getSingleComment = (filter) => {
+  return function(dispatch) {
+    return axios.get(`${BASE_URL}/comments/${filter}`, { headers })
+      .then(response => dispatch({type: RECIEVE_SINGLE_COMMENT, response}))
   }
 }
 
@@ -93,10 +101,11 @@ export const createComment = (values, callback) => {
 }
 
 //---------- PUT API Action Creators
-export const editComment = (id) => {
+export const editComment = (id, values, callback) => {
   return function(dispatch) {
-    return axios.put(`${BASE_URL}/comments/${id}`, { headers })
+    return axios.put(`${BASE_URL}/comments/${id}`,values, { headers })
     .then(response => dispatch({ type: EDIT_COMMENT, response}))
+    .then(() => callback());
   }
 }
 

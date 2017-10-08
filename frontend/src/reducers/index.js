@@ -6,6 +6,7 @@ import {
   RECIEVE_POST,
   RECIEVE_CATEGORIES,
   RECIEVE_COMMENTS,
+  RECIEVE_SINGLE_COMMENT,
   CHANGE_POST_SCORE,
   CHANGE_COMMENT_SCORE,
   DELETE_COMMENT,
@@ -53,6 +54,9 @@ const commentsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECIEVE_COMMENTS:
       return _.mapKeys(action.response.data, 'id');
+//    case RECIEVE_SINGLE_COMMENT:
+//      console.log(action.response.data);
+//      return action.response.data;
     case CHANGE_COMMENT_SCORE:
       return changeScore(state, action)
     default:

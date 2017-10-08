@@ -45,7 +45,7 @@ class NewComment extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="container">
         <div className="card">
@@ -62,7 +62,7 @@ class NewComment extends Component {
                 name="author"
                 component={this.renderTextField}
               />
-              <button type="submit" className="btn btn-link">Submit</button>
+              <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
               <Link to="/" className="btn btn-link">Cancel</Link>
             </form>
           </div>

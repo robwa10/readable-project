@@ -91,7 +91,7 @@ class Post extends Component {
                 />
                 <div className="row">
                   <div>
-                    <button className="btn btn-link mt-3 col-4">Edit</button>
+                    <Link to={`/edit_comment/${comment.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
                   </div>
                   <div>
                     <button onClick={() => this.commentDelete(comment.id)} className="btn btn-link mt-3 col-4">Delete</button>
