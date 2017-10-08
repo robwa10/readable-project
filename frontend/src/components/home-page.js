@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import VisiblePosts from '../containers/VisiblePosts';
-import Post from '../components/post';
+import Post from '../containers/post';
 import Fab from '../components/fab';
 
 const HomePage = () => (
