@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux';
 import {
   RECIEVE_POSTS,
@@ -69,6 +70,7 @@ const rootReducer = combineReducers({
   categories: categoriesReducer,
   options: filterOptions,
   comments: commentsReducer,
+  form: formReducer,
 });
 
 export default rootReducer;
