@@ -48,7 +48,7 @@ class Post extends Component {
                 />
                 <div className="row">
                   <div>
-                    <button className="btn btn-link mt-3 col-4">Comment</button>
+                    <Link to={`/comment/${post.id}`} role="button" className="btn btn-link mt-3 col-4">Comment</Link>
                   </div>
                   <div>
                     <Link to={`/edit_post/${post.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
