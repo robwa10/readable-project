@@ -12,6 +12,7 @@ class VisiblePosts extends Component {
     super(props);
     this.postScore = this.postScore.bind(this);
     this.commentScore = this.commentScore.bind(this);
+    this.postDelete = this.postDelete.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,12 @@ class VisiblePosts extends Component {
 
   commentScore(id, option) {
     this.props.commentVote(id, option)
+  }
+
+  postDelete(id) {
+    this.props.deletePost(id, () => {
+      this.props.history.push('/')
+    })
   }
 
   fetchData() {
@@ -64,7 +71,7 @@ class VisiblePosts extends Component {
               <Link to={`/edit_post/${p.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
             </div>
             <div>
-              <button className="btn btn-link mt-3 col-4">Delete</button>
+              <button onClick={() => this.postDelete(p.id)} className="btn btn-link mt-3 col-4">Delete</button>
             </div>
           </div>
           {/* Add a <hr /> under all but last post */}
