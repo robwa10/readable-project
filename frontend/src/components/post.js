@@ -61,7 +61,7 @@ class Post extends Component {
                     <Link to={`/edit_post/${post.id}`} role="button" className="btn btn-link mt-3 col-4">Edit</Link>
                   </div>
                   <div>
-                    <button onClick={() => this.deletePost(post.id)} className="btn btn-link mt-3 col-4">Delete</button>
+                    <button onClick={() => this.postDelete(post.id)} className="btn btn-link mt-3 col-4">Delete</button>
                   </div>
                 </div>
               </div>
