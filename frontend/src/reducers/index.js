@@ -52,7 +52,6 @@ const changeScore = (state, action) => {
   })
 };
 
-
 const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
     case actions.RECIEVE_CATEGORIES:
