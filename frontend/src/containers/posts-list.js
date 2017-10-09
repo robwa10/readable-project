@@ -7,7 +7,7 @@ import Sidebar from '../containers/sidebar';
 import PostPreview from '../components/post-preview';
 import VoteButton from '../components/vote-button';
 
-class VisiblePosts extends Component {
+class PostsList extends Component {
   constructor(props) {
     super(props);
     this.postScore = this.postScore.bind(this);
@@ -53,7 +53,7 @@ class VisiblePosts extends Component {
     return _.map(this.props.posts, (p, index) => {
       counter++
       return (
-        <div key={counter + postsCount}>
+        <div key={p.id}>
           <PostPreview
             id={`/${p.category}/${p.id}`}
             title={p.title}
@@ -105,4 +105,4 @@ const mapStateToProps = ({ posts }, { match }) => {
   }
 };
 
-export default connect(mapStateToProps, actions)(VisiblePosts);
+export default connect(mapStateToProps, actions)(PostsList);
