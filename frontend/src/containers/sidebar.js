@@ -16,21 +16,20 @@ class Sidebar extends Component {
           <div>
             <h4>Filter</h4>
             <div className="row">
-            {this.props.categories.map(cat => {
-              const c = cat;
+            {this.props.categories.map(c => {
               return (
                 <Link
                   key={c}
                   to={`/${c}`}
                   role="button"
-                  className="p-2 col-12 col-md-6"
+                  className="p-2 col-12 col-sm-6"
                 >{c.charAt(0).toUpperCase() + c.slice(1)}</Link>
                 )
               })}
               <Link
                 to='/'
                 role="button"
-                className="p-2 col-12 col-md-6"
+                className="p-2 col-12 col-sm-6"
               >All Posts</Link>
             </div>
           </div>
