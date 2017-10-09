@@ -50,12 +50,12 @@ class PostsList extends Component {
   renderPosts() {
     const postsCount = Object.keys(this.props.posts).length;
     let counter = 0;
-    return _.map(this.props.posts, (p, index) => {
+    return _.map(this.props.posts, (p) => {
       counter++
       return (
         <div key={p.id}>
           <PostPreview
-            id={`/${p.category}/${p.id}`}
+            route={`/${p.category}/${p.id}`}
             title={p.title}
             score={p.voteScore}
             author={p.author}
