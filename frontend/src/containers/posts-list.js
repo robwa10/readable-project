@@ -85,7 +85,7 @@ class PostsList extends Component {
     return (
       <div className="row">
         <Sidebar />
-        <div className="col-md-9 mt-5 mt-md-auto" id="posts-list">
+        <div className="col-lg-9 mt-5 mt-lg-auto" id="posts-list">
           <div className="card">
             <div className="card-body">
               {this.props.posts === undefined ? null : this.renderPosts()}

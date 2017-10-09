@@ -19,7 +19,7 @@ class Sidebar extends Component {
 
   render() {
   return (
-    <div className="col-md-3">
+    <div className="col-lg-3">
       <div className="card">
         <div className="card-body">
           <div>
@@ -31,22 +31,22 @@ class Sidebar extends Component {
                   key={c}
                   to={`/${c}`}
                   role="button"
-                  className="p-2 col-12 col-sm-6"
+                  className="p-2 col"
                 >{c.charAt(0).toUpperCase() + c.slice(1)}</Link>
                 )
               })}
               <Link
                 to='/'
                 role="button"
-                className="p-2 col-12 col-sm-6"
+                className="p-2 col"
               >All Posts</Link>
             </div>
           </div>
           <div className="mt-4">
             <h4>Sort by Author</h4>
             <div className="row">
-              <button onClick={() => this.postSort('asc')} className="btn btn-link mt-3 col-6">Ascending</button>
-              <button onClick={() => this.postSort('dsc')} className="btn btn-link mt-3 col-6">Descending</button>
+              <button onClick={() => this.postSort('asc')} className="btn btn-link mt-3 col">Ascending</button>
+              <button onClick={() => this.postSort('dsc')} className="btn btn-link mt-3 col">Descending</button>
             </div>
           </div>
         </div>
