@@ -22,6 +22,13 @@ export const getPosts = (filter) => {
   }
 }
 
+export const sortPosts = (filter) => {
+  return function(dispatch) {
+    return axios.get(`${BASE_URL}/posts`, { headers })
+      .then(response => dispatch({ type: actions.SORT_POSTS, response, filter}))
+  }
+}
+
 export const getPostsByCategory = (filter) => {
   return function(dispatch) {
     return axios.get(`${BASE_URL}/${filter}/posts`, { headers })
@@ -121,3 +128,5 @@ export const deleteComment = (id, callback) => {
     .then(() => callback());
   }
 }
+
+// export const sortPosts = filter => ({type: actions.SORT_POSTS, filter});

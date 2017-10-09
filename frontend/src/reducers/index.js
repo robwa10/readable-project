@@ -3,6 +3,40 @@ import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux';
 import * as actions from '../actions/action-constants';
 
+const compareAsc = (a, b) => {
+  const authorA = a.author.toUpperCase();
+  const authorB = b.author.toUpperCase();
+
+  let comparison = 0;
+  if (authorA > authorB) {
+    comparison = 1;
+  } else if (authorA < authorB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+const compareDsc = (a, b) => {
+  const authorA = a.author.toUpperCase();
+  const authorB = b.author.toUpperCase();
+
+  let comparison = 0;
+  if (authorA > authorB) {
+    comparison = 1;
+  } else if (authorA < authorB) {
+    comparison = -1;
+  }
+  return comparison * -1;
+}
+
+const sortPosts = (filter, data) => {
+  if (filter === 'asc') {
+    return _.mapKeys(data.sort(compareAsc), 'id');
+  } else {
+    return _.mapKeys(data.sort(compareDsc), 'id');
+  }
+}
+
 const mapCategories = (action) => {
   const categories = action.response.data.categories;
   let newArray = [];
@@ -17,6 +51,7 @@ const changeScore = (state, action) => {
     [id]: data,
   })
 };
+
 
 const categoriesReducer = (state = ["categories"], action) => {
   switch (action.type) {
@@ -35,6 +70,8 @@ const postsReducer = (state = {}, action) => {
       return {[action.response.data.id]: action.response.data}
     case actions.CHANGE_POST_SCORE:
       return changeScore(state, action);
+    case actions.SORT_POSTS:
+      return sortPosts(action.filter, action.response.data);
     default:
       return state;
   }

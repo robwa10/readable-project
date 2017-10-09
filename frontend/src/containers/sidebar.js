@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCategories } from '../actions';
+import { getCategories, sortPosts } from '../actions';
 import { Link } from 'react-router-dom';
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.postSort = this.postSort.bind(this)
+  }
+
   componentDidMount() {
     this.props.getCategories();
+  }
+
+  postSort(filter) {
+    this.props.sortPosts(filter);
   }
 
   render() {
@@ -33,6 +42,13 @@ class Sidebar extends Component {
               >All Posts</Link>
             </div>
           </div>
+          <div className="mt-4">
+            <h4>Sort by Author</h4>
+            <div className="row">
+              <button onClick={() => this.postSort('asc')} className="btn btn-link mt-3 col-6">Ascending</button>
+              <button onClick={() => this.postSort('dsc')} className="btn btn-link mt-3 col-6">Descending</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -44,4 +60,4 @@ const mapStateToProps = (state) => ({
   categories: state.categories,
 })
 
-export default connect(mapStateToProps, { getCategories })(Sidebar);
+export default connect(mapStateToProps, { getCategories, sortPosts })(Sidebar);
