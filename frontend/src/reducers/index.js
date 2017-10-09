@@ -3,8 +3,6 @@ import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux';
 import * as actions from '../actions/action-constants';
 
-/*
-***** Test this when you get back to your laptop. ******
 
 // Thanks to Ege Ozcan for his solution on Stack Overflow to sorting an
 // array of objects with a function that takes multiple paramaters.
@@ -29,41 +27,6 @@ const sortPosts = (state, filter) => {
   }
   // Sort by author then map back to Object of objects
   return _.mapKeys(newData.sort(dynamicSort(sortType)), 'id');
-}
-*/
-
-const compareAsc = (a, b) => {
-  const authorA = a.author.toUpperCase();
-  const authorB = b.author.toUpperCase();
-
-  let comparison = 0;
-  if (authorA > authorB) {
-    comparison = 1;
-  } else if (authorA < authorB) {
-    comparison = -1;
-  }
-  return comparison;
-}
-
-const compareDsc = (a, b) => {
-  const authorA = a.author.toUpperCase();
-  const authorB = b.author.toUpperCase();
-
-  let comparison = 0;
-  if (authorA > authorB) {
-    comparison = 1;
-  } else if (authorA < authorB) {
-    comparison = -1;
-  }
-  return comparison * -1;
-}
-
-const sortPosts = (filter, data) => {
-  if (filter === 'asc') {
-    return _.mapKeys(data.sort(compareAsc), 'id');
-  } else {
-    return _.mapKeys(data.sort(compareDsc), 'id');
-  }
 }
 
 const mapCategories = (action) => {
@@ -99,7 +62,7 @@ const postsReducer = (state = {}, action) => {
     case actions.CHANGE_POST_SCORE:
       return changeScore(state, action);
     case actions.SORT_POSTS:
-      return sortPosts(action.filter, action.response.data); // Pass state and filter to test new function
+      return sortPosts(state, action.filter); // Pass state and filter to test new function
     default:
       return state;
   }
