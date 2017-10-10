@@ -18,6 +18,10 @@ class Post extends Component {
     this.props.getPostComments(this.props.match.params.id);
   };
 
+  componentWillUnmount() {
+    this.props.clearComments();
+  }
+
   postScore(id, option) {
     this.props.postVote(id, option)
   }
@@ -42,6 +46,7 @@ class Post extends Component {
     const {
       post
     } = this.props
+    const commentTotal = Object.keys(this.props.comments).length;
     return (
       <div className="container">
         {post !== undefined
@@ -53,6 +58,7 @@ class Post extends Component {
                   <p>{post.body}</p>
                 </div>
                 <h6>{`Author: ${post.author}`}</h6>
+                <h6>{`Comments: ${commentTotal}`}</h6>
                 <VoteButton
                   increment={() => this.postScore(post.id, 'upVote')}
                   decrement={() => this.postScore(post.id, 'downVote')}
@@ -75,7 +81,7 @@ class Post extends Component {
           : null
         }
 
-        {Object.keys(this.props.comments).length > 0
+        {commentTotal > 0
           ? _.map(this.props.comments, (comment) => (
             <div key={comment.id} className="card mt-3">
               <div className="card-body">

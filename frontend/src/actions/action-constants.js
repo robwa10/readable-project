@@ -12,3 +12,5 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const EDIT_POST = 'EDIT_POST';
 export const SORT_POSTS = 'SORT_POSTS';
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
+export const ALL_COMMENTS = 'ALL_COMMENTS';

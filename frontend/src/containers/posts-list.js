@@ -25,6 +25,14 @@ class PostsList extends Component {
     }
   }
 
+  fetchData() {
+    if (this.props.filter === 'posts' || undefined) {
+      this.props.getPosts('posts');
+    } else {
+      this.props.getPostsByCategory(this.props.filter);
+    }
+  }
+
   postScore(id, option) {
     this.props.postVote(id, option)
   }
@@ -37,14 +45,6 @@ class PostsList extends Component {
     this.props.deletePost(id, () => {
       this.props.history.push('/')
     })
-  }
-
-  fetchData() {
-    if (this.props.filter === 'posts' || undefined) {
-      this.props.getPosts('posts');
-    } else {
-      this.props.getPostsByCategory(this.props.filter);
-    }
   }
 
   renderPosts() {

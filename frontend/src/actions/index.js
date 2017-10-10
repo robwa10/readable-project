@@ -123,3 +123,5 @@ export const deleteComment = (id, callback) => {
 }
 
 export const sortPosts = filter => ({type: actions.SORT_POSTS, filter});
+
+export const clearComments = () => ({type: actions.CLEAR_COMMENTS});
