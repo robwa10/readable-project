@@ -49,7 +49,7 @@ class PostsList extends Component {
 
   postDelete(id) {
     this.props.deletePost(id, () => {
-      this.props.history.push('/')
+      this.fetchData()
     })
   }
 
