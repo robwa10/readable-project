@@ -3,7 +3,6 @@ import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux';
 import * as actions from '../actions/action-constants';
 
-
 // Thanks to Ege Ozcan for his solution on Stack Overflow to sorting an
 // array of objects with a function that takes multiple paramaters.
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
@@ -25,7 +24,7 @@ const sortPosts = (state, filter) => {
   if (filter === "dsc") {
     sortType = "-author"; // Sort in descending order
   }
-  // Sort by author then map back to Object of objects
+  // Sort then map back to Object
   return _.mapKeys(newData.sort(dynamicSort(sortType)), 'id');
 }
 
@@ -44,7 +43,7 @@ const changeScore = (state, action) => {
   })
 };
 
-const categoriesReducer = (state = ["categories"], action) => {
+const categories = (state = ["categories"], action) => {
   switch (action.type) {
     case actions.RECIEVE_CATEGORIES:
       return mapCategories(action)
@@ -53,7 +52,7 @@ const categoriesReducer = (state = ["categories"], action) => {
   }
 };
 
-const postsReducer = (state = {}, action) => {
+const posts = (state = {}, action) => {
   switch (action.type) {
     case actions.RECIEVE_POSTS:
       return _.mapKeys(action.response.data, 'id');
@@ -62,13 +61,13 @@ const postsReducer = (state = {}, action) => {
     case actions.CHANGE_POST_SCORE:
       return changeScore(state, action);
     case actions.SORT_POSTS:
-      return sortPosts(state, action.filter); // Pass state and filter to test new function
+      return sortPosts(state, action.filter);
     default:
       return state;
   }
 };
 
-const commentsReducer = (state = {}, action) => {
+const comments = (state = {}, action) => {
   switch (action.type) {
     case actions.RECIEVE_COMMENTS:
       return _.mapKeys(action.response.data, 'id');
@@ -82,17 +81,15 @@ const commentsReducer = (state = {}, action) => {
   }
 }
 
-
-const filterOptions = () => (
+const options = () => (
   ["Newest", "Score - Highest First"]
 );
 
-
 const rootReducer = combineReducers({
-  posts: postsReducer,
-  categories: categoriesReducer,
-  options: filterOptions,
-  comments: commentsReducer,
+  posts,
+  categories,
+  options,
+  comments,
   form: formReducer,
 });
 
