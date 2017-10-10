@@ -82,8 +82,8 @@ class Post extends Component {
         }
 
         {commentTotal > 0
-          ? _.map(this.props.comments, (comment) => (
-            <div key={comment.id} className="card mt-3">
+          ? _.map(this.props.comments, (comment, index) => (
+            <div key={index} className="card mt-3">
               <div className="card-body">
                 <div className="card-text">
                   <p>{comment.body}</p>

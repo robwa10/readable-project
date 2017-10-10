@@ -23,6 +23,12 @@ class PostsList extends Component {
     if (this.props.filter !== prevProps.filter) {
       this.fetchData()
     }
+    if (this.props.posts !== prevProps.posts) {
+      for (let key in this.props.posts) {
+        if(!this.props.posts.hasOwnProperty(key)) continue;
+        this.props.getAllPostComments(key)
+      }
+    }
   }
 
   fetchData() {
@@ -59,6 +65,7 @@ class PostsList extends Component {
             title={p.title}
             score={p.voteScore}
             author={p.author}
+            comments={this.props.comments[p.id]}
           />
           <VoteButton
             increment={() => this.postScore(p.id, 'upVote')}
@@ -97,10 +104,11 @@ class PostsList extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }, { match }) => {
+const mapStateToProps = ({ posts, comments }, { match }) => {
   let filter = match.params.filter || 'posts';
     return {
-    posts: posts,
+    posts,
+    comments,
     filter,
   }
 };

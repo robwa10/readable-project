@@ -3,10 +3,6 @@ import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux';
 import * as actions from '../actions/action-constants';
 
-const allComments = (state, data) => {
-  const newObj = _.mapKeys(data, 'id');
-};
-
 // Thanks to Ege Ozcan for his solution on Stack Overflow to sorting an
 // array of objects with a function that takes multiple paramaters.
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
@@ -75,9 +71,11 @@ const comments = (state = {}, action) => {
   switch (action.type) {
     case actions.RECIEVE_COMMENTS:
       return _.mapKeys(action.response.data, 'id');
-//    case RECIEVE_SINGLE_COMMENT:
-//      console.log(action.response.data);
-//      return action.response.data;
+    case actions.RECIEVE_ALL_COMMENTS:
+      return {
+        ...state,
+        [action.filter]: action.response.data.length
+      };
     case actions.CHANGE_COMMENT_SCORE:
       return changeScore(state, action)
     case actions.CLEAR_COMMENTS:

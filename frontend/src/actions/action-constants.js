@@ -14,3 +14,4 @@ export const EDIT_POST = 'EDIT_POST';
 export const SORT_POSTS = 'SORT_POSTS';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const ALL_COMMENTS = 'ALL_COMMENTS';
+export const RECIEVE_ALL_COMMENTS = 'RECIEVE_ALL_COMMENTS';
