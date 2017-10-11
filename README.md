@@ -28,30 +28,30 @@ Clone the repository using:
 ### Homepage
 Features:
 * A list of all posts containing:
- * Post Title
- * Author
- * Number of Comments
- * Current Score with upvote and downvote
+  * Post Title
+  * Author
+  * Number of Comments
+  * Current Score with upvote and downvote
 * A Sidebar containing the following sorting methods:
- * By Category
- * By Author - ascending and descending
- * By Title - ascending and descending
+  * By Category
+  * By Author - ascending and descending
+  * By Title - ascending and descending
 
 Posts can be edited, deleted or clicked on from the Homepage.
 
 ### Post View
 Features:
 * A view of the post containing:
- * Post Title
- * Post Body
- * Author
- * Number of Comments
- * Current Score with upvote and downvote
+  * Post Title
+  * Post Body
+  * Author
+  * Number of Comments
+  * Current Score with upvote and downvote
 * List of comments containing:
- * Comment Title
- * Comment Body
- * Comment Author
- * Current Score with upvote and downvote
+  * Comment Title
+  * Comment Body
+  * Comment Author
+  * Current Score with upvote and downvote
 
 Posts and comments can be edited or deleted.
 
