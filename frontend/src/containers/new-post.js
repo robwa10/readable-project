@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createPost, getCategories } from "../actions";
 import uuidv4 from 'uuid/v4'
@@ -40,10 +39,14 @@ class NewPost extends Component {
     );
   }
 
+  cancelEdit() {
+    this.props.history.goBack();
+  }
+
   onSubmit(values) {
     const newValues =  {...values, id: uuidv4(), timestamp: Date.now()}
     this.props.createPost(newValues, () => {
-      this.props.history.push('/');
+      this.props.history.goBack();
     });
   }
 
@@ -88,7 +91,7 @@ class NewPost extends Component {
                 </div>
                 </div>
               <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
-              <Link to="/" className="btn btn-link">Cancel</Link>
+              <button onClick = {() => this.cancelEdit.bind(this)} type="submit" className="btn btn-link">Cancel</button>
             </form>
           </div>
         </div>

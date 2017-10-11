@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createComment } from "../actions";
 import uuidv4 from 'uuid/v4'
@@ -36,11 +35,15 @@ class NewComment extends Component {
     );
   }
 
+  cancelEdit() {
+    this.props.history.goBack();
+  }
+
   onSubmit(values) {
     const parentId = this.props.match.params.id
     const newValues =  {...values, id: uuidv4(), timestamp: Date.now(), parentId}
     this.props.createComment(newValues, () => {
-      this.props.history.push('/');
+      this.cancelEdit();
     });
   }
 
@@ -63,7 +66,7 @@ class NewComment extends Component {
                 component={this.renderTextField}
               />
               <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
-              <Link to="/" className="btn btn-link">Cancel</Link>
+              <button onClick = {() => this.cancelEdit.bind(this)} type="submit" className="btn btn-link">Cancel</button>
             </form>
           </div>
         </div>

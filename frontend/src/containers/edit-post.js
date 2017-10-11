@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { editPost, getSinglePost } from "../actions";
 
@@ -38,10 +37,14 @@ class EditPost extends Component {
     );
   }
 
+  cancelEdit() {
+    this.props.history.goBack();
+  }
+
   onSubmit(values) {
     const newValues =  {...values }
     this.props.editPost(this.props.match.params.id, newValues, () => {
-      this.props.history.push('/');
+      this.cancelEdit();
     });
   }
 
@@ -63,7 +66,7 @@ class EditPost extends Component {
                 component={this.renderBody}
               />
               <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
-              <Link to="/" className="btn btn-link">Cancel</Link>
+              <button onClick = {() => this.cancelEdit.bind(this)} type="submit" className="btn btn-link">Cancel</button>
             </form>
           </div>
         </div>
