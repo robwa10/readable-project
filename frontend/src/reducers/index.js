@@ -20,9 +20,15 @@ const dynamicSort = (property) => {
 
 const sortPosts = (state, filter) => {
   const newData = Object.values(state); // Convert to array of objects to sort
-  let sortType = "author";
-  if (filter === "dsc") {
-    sortType = "-author"; // Sort in descending order
+  let sortType = 'author';
+  if (filter === 'authorDSC') {
+    sortType = '-author';
+  } else if (filter === 'titleASC') {
+    sortType = 'title';
+  } else if (filter === 'titleDSC') {
+    sortType = '-title';
+  } else {
+    console.log('There was an error sorting.');
   }
   // Sort then map back to Object
   return _.mapKeys(newData.sort(dynamicSort(sortType)), 'id');
