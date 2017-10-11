@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 import { createPost, getCategories } from "../actions";
 import uuidv4 from 'uuid/v4'
 
@@ -91,7 +92,7 @@ class NewPost extends Component {
                 </div>
                 </div>
               <button type="submit" disabled={pristine || submitting } className="btn btn-link">Submit</button>
-              <button onClick = {() => this.cancelEdit.bind(this)} type="submit" className="btn btn-link">Cancel</button>
+              <Link to="/" type="submit" className="btn btn-link">Cancel</Link>
             </form>
           </div>
         </div>
