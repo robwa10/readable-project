@@ -22,6 +22,9 @@ Clone the repository using:
 `cd frontend` and run the app in development mode using:
 `npm start`
 
+### ****Warning****
+The development version of this app uses Javascript technology that is not supported by all browsers. It is recommened that you view the app using Google Chrome to ensure compatability.
+
 
 ## App Views and Features
 
