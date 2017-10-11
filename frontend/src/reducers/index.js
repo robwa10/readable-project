@@ -20,9 +20,11 @@ const dynamicSort = (property) => {
 
 const sortPosts = (state, filter) => {
   const newData = Object.values(state); // Convert to array of objects to sort
-  let sortType = 'author';
+  let sortType;
   if (filter === 'authorDSC') {
     sortType = '-author';
+  } else if (filter === 'authorASC') {
+    sortType = 'author';
   } else if (filter === 'titleASC') {
     sortType = 'title';
   } else if (filter === 'titleDSC') {
@@ -77,6 +79,8 @@ const comments = (state = {}, action) => {
   switch (action.type) {
     case actions.RECIEVE_COMMENTS:
       return _.mapKeys(action.response.data, 'id');
+    case actions.RECIEVE_SINGLE_COMMENT:
+      return {[action.response.data.id]: action.response.data}
     case actions.RECIEVE_ALL_COMMENTS:
       return {
         ...state,
