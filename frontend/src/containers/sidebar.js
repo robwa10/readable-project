@@ -56,6 +56,13 @@ class Sidebar extends Component {
               <button onClick={() => this.postSort('titleDSC')} className="btn btn-link mt-3 col">Descending</button>
             </div>
           </div>
+          <div className="mt-4">
+            <h4>Sort by Score</h4>
+            <div className="row">
+              <button onClick={() => this.postSort('scoreASC')} className="btn btn-link mt-3 col">Ascending</button>
+              <button onClick={() => this.postSort('scoreDSC')} className="btn btn-link mt-3 col">Descending</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
