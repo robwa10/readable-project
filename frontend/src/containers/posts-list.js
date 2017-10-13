@@ -66,6 +66,7 @@ class PostsList extends Component {
             score={p.voteScore}
             author={p.author}
             comments={this.props.comments[p.id]}
+            timestamp={p.timestamp}
           />
           <VoteButton
             increment={() => this.postScore(p.id, 'upVote')}

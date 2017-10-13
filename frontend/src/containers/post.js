@@ -49,8 +49,9 @@ class Post extends Component {
     const commentTotal = Object.keys(this.props.comments).length;
     return (
       <div className="container">
-        {post !== undefined
-          ?
+        {post === undefined
+          ? <div className="text-center"><h3>Sorry that post has been deleted.</h3></div>
+          :
             <div key={post.id} className="card">
               <div className="card-body">
                 <div className="card-title"><h2>{post.title}</h2></div>
@@ -78,10 +79,12 @@ class Post extends Component {
                 </div>
               </div>
             </div>
-          : null
         }
 
-        {commentTotal > 0
+        {post === undefined
+          ? null
+          :
+          commentTotal > 0
           ? _.map(this.props.comments, (comment, index) => (
             <div key={index} className="card mt-3">
               <div className="card-body">

@@ -45,15 +45,22 @@ class Sidebar extends Component {
           <div className="mt-4">
             <h4>Sort by Author</h4>
             <div className="row">
-              <button onClick={() => this.postSort('authorASC')} className="btn btn-link mt-3 col">Ascending</button>
-              <button onClick={() => this.postSort('authorDSC')} className="btn btn-link mt-3 col">Descending</button>
+              <button onClick={() => this.postSort('author')} className="btn btn-link mt-3 col">Ascending</button>
+              <button onClick={() => this.postSort('-author')} className="btn btn-link mt-3 col">Descending</button>
             </div>
           </div>
           <div className="mt-4">
             <h4>Sort by Title</h4>
             <div className="row">
-              <button onClick={() => this.postSort('titleASC')} className="btn btn-link mt-3 col">Ascending</button>
-              <button onClick={() => this.postSort('titleDSC')} className="btn btn-link mt-3 col">Descending</button>
+              <button onClick={() => this.postSort('title')} className="btn btn-link mt-3 col">Ascending</button>
+              <button onClick={() => this.postSort('-title')} className="btn btn-link mt-3 col">Descending</button>
+            </div>
+          </div>
+          <div className="mt-4">
+            <h4>Sort by Date</h4>
+            <div className="row">
+              <button onClick={() => this.postSort('-timestamp')} className="btn btn-link mt-3 col">Newest First</button>
+              <button onClick={() => this.postSort('timestamp')} className="btn btn-link mt-3 col">Oldest First</button>
             </div>
           </div>
         </div>
