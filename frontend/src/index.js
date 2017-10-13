@@ -24,18 +24,9 @@ import Body from './components/body';
 import './App.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+const store = createStore(reducer, composeEnhancers(
     applyMiddleware(thunk)
   ));
-
-// Note: this API requires redux@>=3.1.0
-//const store = createStore(
-//  reducer,
-//  applyMiddleware(thunk)
-//);
-
-//const creatStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
-//creatStoreWithMiddleware(reducer)
 
 ReactDOM.render(
   <Provider store={store}>
