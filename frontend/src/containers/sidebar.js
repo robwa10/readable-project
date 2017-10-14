@@ -9,10 +9,6 @@ class Sidebar extends Component {
     this.postSort = this.postSort.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getCategories();
-  }
-
   postSort(filter) {
     this.props.sortPosts(filter);
   }
