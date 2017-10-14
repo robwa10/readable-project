@@ -11,7 +11,6 @@ class PostsList extends Component {
   constructor(props) {
     super(props);
     this.postScore = this.postScore.bind(this);
-    this.commentScore = this.commentScore.bind(this);
     this.postDelete = this.postDelete.bind(this);
   }
 
