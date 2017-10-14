@@ -33,19 +33,13 @@ inObject = (data, filter) => {
     }
   }
 
-  postScore(id, option) {
-    this.props.postVote(id, option)
-  }
+  postScore = (id, option) => (this.props.postVote(id, option))
 
-  commentScore(id, option) {
-    this.props.commentVote(id, option)
-  }
+  commentScore = (id, option) => (this.props.commentVote(id, option))
 
-  postDelete(id) {
-    this.props.deletePost(id, () => {
-      this.fetchData()
-    })
-  }
+  postDelete = (id) => (
+    this.props.deletePost(id, () => (this.fetchData()))
+  )
 
   renderPosts() {
     const postsCount = Object.keys(this.props.posts).length;
