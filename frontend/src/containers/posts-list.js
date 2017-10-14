@@ -35,8 +35,6 @@ inObject = (data, filter) => {
 
   postScore = (id, option) => (this.props.postVote(id, option))
 
-  commentScore = (id, option) => (this.props.commentVote(id, option))
-
   postDelete = (id) => (
     this.props.deletePost(id, () => (this.fetchData()))
   )
