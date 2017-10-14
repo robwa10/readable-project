@@ -15,27 +15,21 @@ class PostsList extends Component {
     this.postDelete = this.postDelete.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchData()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.filter !== prevProps.filter) {
-      this.fetchData()
-    }
-    if (this.props.posts !== prevProps.posts) {
-      for (let key in this.props.posts) {
-        if(!this.props.posts.hasOwnProperty(key)) continue;
-        this.props.getAllPostComments(key)
-      }
-    }
-  }
-
-  fetchData() {
-    if (this.props.filter === 'posts' || undefined) {
-      this.props.getPosts('posts');
+  /*
+   Check the value of an object within an object against a filter.
+   Returns a new object containing all objects that evaluated to true.
+  */
+inObject = (data, filter) => {
+    let myObject = {};
+    if (filter === undefined) {
+      return data
     } else {
-      this.props.getPostsByCategory(this.props.filter);
+      for (let key in data) {
+        if (data[key].category === filter) {
+          myObject[key] = data[key];
+        }
+      }
+      return myObject
     }
   }
 
@@ -56,7 +50,7 @@ class PostsList extends Component {
   renderPosts() {
     const postsCount = Object.keys(this.props.posts).length;
     let counter = 0;
-    return _.map(this.props.posts, (p) => {
+    return _.map(this.inObject(this.props.posts, this.props.filter), (p) => {
       counter++
       return (
         <div key={p.id}>
@@ -106,7 +100,7 @@ class PostsList extends Component {
 }
 
 const mapStateToProps = ({ posts, comments }, { match }) => {
-  let filter = match.params.filter || 'posts';
+  let filter = match.params.filter;
     return {
     posts,
     comments,
