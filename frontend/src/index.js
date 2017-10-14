@@ -20,7 +20,7 @@ import reducer from './reducers';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Body from './components/body';
+import App from './components/app';
 import './App.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -31,7 +31,7 @@ const store = createStore(reducer, composeEnhancers(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Body/>
+      <App/>
     </BrowserRouter>
   </Provider>, document.getElementById('root')
 );
