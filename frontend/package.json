@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "collections": "^5.0.7",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-md-spinner": "^0.2.5",
